@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projecte DSA</string>
+    <string name="login_string">Inicia sessió</string>
+    <string name="password_string">Contrasenya</string>
+    <string name="username_string">Usuari</string>
+    <string name="register_string">Registra\'t</string>
+    <string name="users_string">Usuaris</string>
+    <string name="welcome_back_string">Benvingut de nou! 😎</string>
+    <string name="show_users_string">Mostra llistat d\'usuaris</string>
+    <string name="show_users_error_string">S\'ha produït un error a l\'intentar obtenir el llistat d\\\'usuaris 😵</string>
+    <string name="confirm_password_string">Confirma contrasenya</string>
+    <string name="passwords_not_match_string">Les contrasenyes no coincideixen</string>
+    <string name="write_username_string">Has d\'escriure un nom d\'usuari</string>
+    <string name="write_password_string">Has d\'escriure una contrasenya</string>
+    <string name="write_confirm_password_string">Has de confirmar la teva contrasenya</string>
+    <string name="succesful_register_string">T\'has registrat correctament!</string>
+    <string name="error_register_string">S\'ha produït un error a l\'intentar registrar l\'usuari</string>
+    <string name="login_succesful_string">Has iniciat sessió correctament!</string>
+    <string name="user_already_exists_string">Ja existeix un usuari amb aquest nom</string>
+    <string name="incorrect_password_string">Contrasenya incorrecta</string>
+    <string name="error_login_string">S\'ha produït un error a l\'intentar iniciar sessió</string>
+    <string name="user_not_exists_string">No existeix un usuari amb aquest nom</string>
+</resources>

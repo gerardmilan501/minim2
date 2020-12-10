@@ -1,0 +1,146 @@
+<html>
+<head>
+
+    <title>LoginDSA</title>
+    <meta charset="utf8">
+    <!-- link a hoja de estilo de google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Faster One' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <!-- link a hoja de estilo de bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- link a cosas de bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- link a hoja de estilo propia -->
+    <link rel="stylesheet" media="screen" href="@{'/public/swagger/swagger-ui.css'}">
+    <style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: #B490F3;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #B490F3;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.familia {
+    color: #007bff;
+    font-family: Open Sans;
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 25px;
+</style>
+</head>
+
+<header>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">User</a>
+            <div class="dropdown-content">
+                <a href="#">Log in</a>
+                <a href="#">Sign up</a>
+                <a href="#">Cart</a>
+            </div>
+        </li>
+    </ul>
+</header>
+
+
+<div class="container">
+    <div class="row justify-content-start">
+        <div class="col-lg-4 rounded-lg" id="container-login">
+            <div class="familia-titulo">Inicia sesió</div>
+
+            <!-- ESPACIO -->
+            <form action="@{login()}" method="post">
+                <div class="form-group">
+                    <label for="user" class="mr-sm-2" id="samp">Nom d'usuari:</label>
+                    <input type="text" class="form-control" placeholder="Nom d'usuari" id="user" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwd" class="mr-sm-2" id="a">Contrasenya:</label>
+                    <input type="password" class="form-control" placeholder="Contrasenya" id="pwd" name="password" required>
+                </div>
+                <div class="form-group" id="font-petita">
+                    <a href="@{VistaRegistre()}" id="font-petita-color">No recordes la contrasenya?</a>
+                </div>
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-primary" id="boto" id="familia">Entrar</button>
+                    <a href="@{VistaRegistre()}">
+                        <button type="button" class="btn btn-primary" id="boto" id="familia">Registrarse</button>
+                    </a>
+                </div>
+            </form>
+            <!-- ESPACIO -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Footer -->
+<footer>
+    <div class="usuari-actiu">
+        Not logged in
+    </div>
+    <!-- Copyright -->
+    <div class="copyright">
+        ©2020 DSA
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+</body>
+</html>
