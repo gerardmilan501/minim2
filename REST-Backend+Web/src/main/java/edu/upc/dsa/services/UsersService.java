@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Api(value = "/users", description = "Endpoint to User Service")
+@Api(value = "/users")
 @Path("/users")
 public class UsersService {
 
@@ -48,6 +48,8 @@ public class UsersService {
         return Response.status(201).entity(entity).build()  ;
 
     }
+
+    //prueba commit
 /*
     @GET
     @ApiOperation(value = "Get a User", notes = "Get a user from DNI")
