@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    //PRUEBA COMMIT ANDROID STUDIO
     public void btnLoginClick(android.view.View u){
 
         Log.d("DebugTag","Usuario ha pulsado el botón para logearse.");
