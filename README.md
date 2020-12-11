@@ -16,3 +16,4 @@ Cuando tenga tiempo (a partir del sábado) seguiré con la App. Lo siguiente que
 -> Añadir opción de cerrar sesión (logout) 
 -> Cualquier otra cosa que vaya surgiendo o se os ocurra
 -> Añadir "screen" a la máquina remota para poder ejecutar el servidor en segundo plano, y que así no se cierre al cerrar la terminal desde la que nos conectamos remotamente.
+-> Diseñar y cambiar icono de la App
