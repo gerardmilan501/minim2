@@ -34,8 +34,8 @@ public class Main {
 
         beanConfig.setHost("localhost:8080");
         beanConfig.setBasePath("/dsaApp");
-        beanConfig.setContact("support@example.com");
-        beanConfig.setDescription("REST API for Tracks Manager");
+        beanConfig.setContact("support@grup5dsa.com");
+        beanConfig.setDescription("REST API for GAME G5 Manager");
         beanConfig.setLicenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html");
         beanConfig.setResourcePackage("edu.upc.dsa.services");
         beanConfig.setTermsOfServiceUrl("http://www.example.com/resources/eula");
