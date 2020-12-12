@@ -29,7 +29,7 @@ public class TextServiceTest {
         // --
         // c.configuration().enable(new org.glassfish.jersey.media.json.JsonJaxbFeature());
 
-        target = c.target(Main.BASE_URI);
+        //target = c.target(Main.BASE_URI);
     }
 
     @After
