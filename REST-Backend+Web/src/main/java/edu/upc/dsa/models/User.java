@@ -7,10 +7,12 @@ public class User {
     String id;
     String username;
     String pwd;
+    int score;
     static int lastId;
 
     public User() {
         this.id = RandomUtils.getId();
+        this.score = 0;
     }
 
     public User(String username, String pwd) {
@@ -42,6 +44,14 @@ public class User {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore(){
+        return this.score;
     }
 
     @Override
