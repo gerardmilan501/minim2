@@ -15,8 +15,14 @@ import java.net.URI;
  *
  */
 public class Main {
-    // Base URI the Grizzly HTTP server will listen on
-    public static final String BASE_URI = "http://localhost:8080/dsaApp/";
+
+    private static final boolean remote_machine = false;
+
+    private static final String remote_ip = "147.83.7.207";
+    private static final int remote_port = 8080;
+
+    private static final String local_ip = "localhost";
+    private static final int local_port = 8080;
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -32,7 +38,12 @@ public class Main {
 
         BeanConfig beanConfig = new BeanConfig();
 
-        beanConfig.setHost("localhost:8080");
+        if (remote_machine) {
+            beanConfig.setHost(remote_ip + ":" + local_port);
+        } else {
+            beanConfig.setHost(local_ip + ":" + remote_port);
+        }
+
         beanConfig.setBasePath("/dsaApp");
         beanConfig.setContact("support@grup5dsa.com");
         beanConfig.setDescription("REST API for GAME G5 Manager");
@@ -44,8 +55,12 @@ public class Main {
         beanConfig.setScan(true);
 
         // create and start a new instance of grizzly http server
-        // exposing the Jersey application at BASE_URI
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+        // exposing the Jersey application
+        if (remote_machine) {
+            return GrizzlyHttpServerFactory.createHttpServer(URI.create("http://" + remote_ip + ":" + remote_port + "/dsaApp/"), rc);
+        } else {
+            return GrizzlyHttpServerFactory.createHttpServer(URI.create("http://" + local_ip + ":" + local_port + "/dsaApp/"), rc);
+        }
     }
 
 
@@ -55,17 +70,24 @@ public class Main {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
+
         final HttpServer server = startServer();
 
         StaticHttpHandler staticHttpHandler = new StaticHttpHandler("./public/");
         server.getServerConfiguration().addHttpHandler(staticHttpHandler, "/");
 
-
-        System.out.println(String.format("Jersey app started with WADL available at "
-                + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
+        if (remote_machine) {
+        System.out.println("Jersey app started with WADL available at "
+                + "http://" + remote_ip + ":" + remote_port + "/dsaApp/application.wadl\nHit enter to stop it...");
+        } else {
+            System.out.println("Jersey app started with WADL available at "
+                    + "http://" + local_ip + ":" + local_port + "/dsaApp/application.wadl\nHit enter to stop it...");
+        }
 
         System.in.read();
         server.stop();
+
+
     }
 }
 
