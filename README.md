@@ -23,7 +23,7 @@ Lluís: Cuando tenga tiempo (a partir del sábado) seguiré con la App. Lo sigui
 -> Cualquier otra cosa que vaya surgiendo o se os ocurra
 
 
-En  cuanto al backend:
+En cuanto al backend:
 -> Hay que retocar también la API (ya que si se retoca en la parte de Android, estos cambios deben ir acompañados también de sus respectivos cambios en el Backend)
 -> Conectar el backend con la base de datos
 -> Añadir una variable global y un sistema mediante el cual, si esa variable es "true", se use nuestra IP de máquina remota, y si es "false" la IP local. (esto sería por comodidad más que nada)
