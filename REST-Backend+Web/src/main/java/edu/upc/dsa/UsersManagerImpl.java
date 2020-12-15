@@ -1,8 +1,7 @@
 package edu.upc.dsa;
 
-import edu.upc.dsa.models.Partida;
 import edu.upc.dsa.models.User;
-import java.util.*;
+
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -11,7 +10,7 @@ public class UsersManagerImpl implements UsersManager {
     private static UsersManager instance;
 
     protected List<User> users;
-    protected List<Partida> partidas;
+
 
     final static Logger logger = Logger.getLogger(UsersManagerImpl.class);
 
@@ -131,117 +130,6 @@ public class UsersManagerImpl implements UsersManager {
 
         return u;
     }
-                                                                            //PARTIDAS//        //      //      //
-    public int sizePartidas() {
-        int retp = this.partidas.size();
-        logger.info("size partidas " + retp);
 
-        return retp;
-    }
-
-    public Partida addPartida(Partida p) {
-        logger.info("new Partida to create: " + p);
-
-        this.partidas.add (p);
-        logger.info("new Partida created");
-        return p;
-    }
-
-    public Partida addPartida(String id_partida, String id_usuario) {
-        return this.addPartida(new Partida(id_partida, id_usuario));
-    }
-
-    public Partida getPartida(String id_partida) {
-        logger.info("getPartida("+id_partida+")");
-
-        for (Partida p: this.partidas) {
-            if (p.getId_partida().equals(id_partida)) {
-                logger.info("getPartida("+id_partida+"): "+p);
-
-                return p;
-            }
-        }
-
-        logger.warn("partida not found with this id: " + id_partida);
-        return null;
-    }
-
-    public boolean partidaExists(String id_partida) {
-
-        for (Partida p: this.partidas) {
-
-            if (p.getId_partida().equals(id_partida)) {
-
-                return true;
-
-            }
-
-        }
-
-        return false;
-    }
-
-
-
-
-
-    public List<Partida> findAllPartidas() {
-        return this.partidas;
-    }
-
-    @Override
-    public void deletePartida(String id_partida) {
-        logger.info("Want to delete 'Partida' with this id: " +id_partida);
-        Partida p = this.getPartida(id_partida);
-        if (p==null) {
-            logger.warn("Partida not found " +p);
-        }
-        else logger.info(p+"Partida deleted ");
-
-        this.partidas.remove(p);
-
-    }
-
-    @Override
-    public Partida updatePartida(Partida p) {
-        Partida u = this.getPartida(p.getId_partida());
-
-        if (u!=null) {
-            logger.info(p+" rebut!!!! ");
-
-            u.setId_usuario(p.getId_usuario());
-            u.setId_partida(p.getId_partida());
-
-            logger.info(u+"Partida updated ");
-        }
-        else {
-            logger.warn("Partida not found "+p);
-        }
-
-        return u;
-    }
-
-    public boolean checkUsuario(String id_partida, String id_usuario) {
-
-        for (Partida p: this.partidas) {
-
-            if (p.getId_partida().equals(id_partida)) {
-
-                if (p.getId_usuario().equals(id_usuario)) {
-
-                    return true;
-
-                } else {
-
-                    return false;
-                }
-
-            }
-
-        }
-
-        return false;
-
-    }
 
 }
