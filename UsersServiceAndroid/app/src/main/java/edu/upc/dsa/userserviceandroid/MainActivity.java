@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onFailure(Call<List<Users>> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), R.string.show_users_error_string, Toast.LENGTH_SHORT).show();
                 }
+
             });
 
             return true;
