@@ -1,4 +1,4 @@
-package edu.upc.dsa.firefighteradventure;
+package edu.upc.dsa.firefighteradventure.models;
 
 public class Users {
 

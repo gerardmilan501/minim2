@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import edu.upc.dsa.firefighteradventure.models.Users;
+import edu.upc.dsa.firefighteradventure.services.UsersService;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -71,10 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     List<Users> result = response.body();
                     setContentView(R.layout.lista_tracks);
                     recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-                    // use this setting to
-                    // improve performance if you know that changes
-                    // in content do not change the layout size
-                    // of the RecyclerView
+
                     recyclerView.setHasFixedSize(true);
                     // use a linear layout manager
 
@@ -109,24 +108,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         layoutManager = new LinearLayoutManager(this);
-
-    }
-    public void btnToSignupClick(android.view.View u){
-        btnSignupcount++;
-        Log.d("DebugTag","Usuario quiere acceder al Signin. Veces pulsado el botón="+btnSignupcount);
-        Intent intent1 = new Intent(MainActivity.this, RegisterActivity.class);
-        //intent.putExtra("nombre","Meri");
-        startActivity(intent1);
-    }
-
-    public void btnToLoginClick(android.view.View v){
-        btnLogincount++;
-        Log.d("DebugTag","Usuario quiere acceder al Login. Veces pulsado el botón="+btnLogincount);
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        //intent.putExtra("nombre","Meri");
-        startActivity(intent);
-    }
-    public void add (View v){
 
     }
 

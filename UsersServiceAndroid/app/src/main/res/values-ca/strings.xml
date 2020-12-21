@@ -13,6 +13,8 @@
     <string name="passwords_not_match_string">Les contrasenyes no coincideixen</string>
     <string name="write_username_string">Has d\'escriure un nom d\'usuari</string>
     <string name="write_password_string">Has d\'escriure una contrasenya</string>
+    <string name="write_email_string">Has d\'escriure un email</string>
+    <string name="write_birthdate_string">Has d\'escriure una data de naixement</string>
     <string name="write_confirm_password_string">Has de confirmar la teva contrasenya</string>
     <string name="succesful_register_string">T\'has registrat correctament!</string>
     <string name="error_register_string">S\'ha produït un error a l\'intentar registrar l\'usuari</string>
@@ -21,4 +23,11 @@
     <string name="incorrect_password_string">Contrasenya incorrecta</string>
     <string name="error_login_string">S\'ha produït un error a l\'intentar iniciar sessió</string>
     <string name="user_not_exists_string">No existeix un usuari amb aquest nom</string>
+    <string name="username_short_long_string">El teu nom d\'usuari ha de tenir entre 4 i 20 caràcters</string>
+    <string name="password_short_long_string">La teva contrasenya ha de tenir entre 4 i 20 caràcters</string>
+    <string name="email_short_long_string">El teu email ha de tenir entre 4 i 20 caràcters</string>
+    <string name="too_young_string">Ets massa jove per jugar</string>
+    <string name="email_string">Email</string>
+    <string name="birthdate_string">Data de naixement</string>
+
 </resources>

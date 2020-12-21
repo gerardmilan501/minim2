@@ -1,6 +1,8 @@
 package edu.upc.dsa.firefighteradventure;
 
 import androidx.appcompat.app.AppCompatActivity;
+import edu.upc.dsa.firefighteradventure.models.LoginCredentials;
+import edu.upc.dsa.firefighteradventure.services.UsersService;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -16,8 +18,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
@@ -35,20 +39,28 @@ public class LoginActivity extends AppCompatActivity {
 
         Log.d("DebugTag","Usuario ha pulsado el botón para logearse.");
 
-     //   Intent intent = new Intent(LoginActivity.this, Cataleg.class);
         EditText etUsername = (EditText) findViewById(R.id.etUsername);
         EditText etPassword = (EditText) findViewById(R.id.etPwd);
 
         if (etUsername.getText().toString().equals("")) {
 
             Toast.makeText(getApplicationContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
+            return;
 
         } else if (etPassword.getText().toString().equals("")) {
 
             Toast.makeText(getApplicationContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
+            return;
 
         }
 
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarLogin);
+
+        progressBar.setProgress(0);
+        progressBar.setVisibility(View.VISIBLE);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         OkHttpClient client = new OkHttpClient.Builder()
@@ -65,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
         UsersService service = retrofit.create(UsersService.class);
 
-        Call<ResponseBody> resp = service.loginUser(etUsername.getText().toString(), etPassword.getText().toString());
+        Call<ResponseBody> resp = service.loginUser(new LoginCredentials(etUsername.getText().toString(), etPassword.getText().toString()));
 
         resp.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -93,6 +105,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
 
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarLogin);
+                progressBar.setVisibility(View.GONE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
             }
 
             @Override
@@ -100,7 +116,13 @@ public class LoginActivity extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), R.string.error_login_string, Toast.LENGTH_SHORT).show();
 
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarLogin);
+                progressBar.setVisibility(View.GONE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
             }
+
+
         });
 
 

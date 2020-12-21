@@ -12,6 +12,8 @@
     <string name="passwords_not_match_string">Passwords do not match</string>
     <string name="write_username_string">You must write an username</string>
     <string name="write_password_string">You must write a password</string>
+    <string name="write_email_string">You must write an email</string>
+    <string name="write_birthdate_string">You must write a birthdate</string>
     <string name="write_confirm_password_string">You must confirm your password</string>
     <string name="succesful_register_string">Register succesful!</string>
     <string name="error_register_string">Error while trying to register user</string>
@@ -20,5 +22,13 @@
     <string name="incorrect_password_string">Incorrect password</string>
     <string name="error_login_string">Error while trying to login</string>
     <string name="user_not_exists_string">There is no user with that name</string>
+    <string name="username_short_long_string">Your username must be between 4 and 20 characters</string>
+    <string name="password_short_long_string">Your password must be between 4 and 20 characters</string>
+    <string name="email_short_long_string">Your email must be between 4 and 30 characters</string>
+    <string name="too_young_string">You are too young to play</string>
+    <string name="email_string">Email</string>
+    <string name="birthdate_string">Birthdate</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

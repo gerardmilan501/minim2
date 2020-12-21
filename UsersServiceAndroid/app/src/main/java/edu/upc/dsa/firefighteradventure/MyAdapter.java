@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+import edu.upc.dsa.firefighteradventure.models.Users;
 
 import java.util.List;
 

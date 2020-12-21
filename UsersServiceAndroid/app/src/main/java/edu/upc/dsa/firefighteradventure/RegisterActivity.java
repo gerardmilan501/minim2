@@ -1,6 +1,8 @@
 package edu.upc.dsa.firefighteradventure;
 
 import androidx.appcompat.app.AppCompatActivity;
+import edu.upc.dsa.firefighteradventure.models.RegisterCredentials;
+import edu.upc.dsa.firefighteradventure.services.UsersService;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -16,8 +18,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -25,31 +29,55 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_register);
     }
     public void btnSignupClick(android.view.View u){
 
         EditText etUsernameSignup = findViewById(R.id.etUsernameSignup);
         EditText etPwdSignup = findViewById(R.id.etPwdSignup);
         EditText etConfirmPwdSingup = findViewById(R.id.etConfirmPwdSignup);
+        EditText etEmail = findViewById(R.id.etEmail);
+        EditText etBirthdate = findViewById(R.id.etBirthdate);
 
         if (etUsernameSignup.getText().toString().equals("")) {
 
             Toast.makeText(getApplicationContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
+            return;
 
         } else if (etPwdSignup.getText().toString().equals("")) {
 
             Toast.makeText(getApplicationContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
+            return;
 
         } else if (etConfirmPwdSingup.getText().toString().equals("")) {
 
             Toast.makeText(getApplicationContext(), R.string.write_confirm_password_string, Toast.LENGTH_SHORT).show();
+            return;
+
+        } else if (etEmail.getText().toString().equals("")) {
+
+            Toast.makeText(getApplicationContext(), R.string.write_email_string, Toast.LENGTH_SHORT).show();
+            return;
+
+        } else if (etBirthdate.getText().toString().equals((""))) {
+
+            Toast.makeText(getApplicationContext(), R.string.write_birthdate_string, Toast.LENGTH_SHORT).show();
+            return;
 
         } else if (!etConfirmPwdSingup.getText().toString().equals(etPwdSignup.getText().toString())) {
 
             Toast.makeText(getApplicationContext(), R.string.passwords_not_match_string, Toast.LENGTH_SHORT).show();
+            return;
 
         }
+
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarRegister);
+
+        progressBar.setProgress(0);
+        progressBar.setVisibility(View.VISIBLE);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         OkHttpClient client = new OkHttpClient.Builder()
@@ -66,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         UsersService service = retrofit.create(UsersService.class);
 
-        Call<ResponseBody> resp = service.registerUser(etUsernameSignup.getText().toString(), etPwdSignup.getText().toString());
+        Call<ResponseBody> resp = service.registerUser(new RegisterCredentials(etUsernameSignup.getText().toString(), etPwdSignup.getText().toString(), etEmail.getText().toString(), etBirthdate.getText().toString()));
 
         resp.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -90,7 +118,27 @@ public class RegisterActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), R.string.user_already_exists_string, Toast.LENGTH_SHORT).show();
 
+                } else if (response.code() == 604) {
+
+                    Toast.makeText(getApplicationContext(), R.string.username_short_long_string, Toast.LENGTH_SHORT).show();
+
+                } else if (response.code() == 605) {
+
+                    Toast.makeText(getApplicationContext(), R.string.password_short_long_string, Toast.LENGTH_SHORT).show();
+
+                } else if (response.code() == 606) {
+
+                    Toast.makeText(getApplicationContext(), R.string.email_short_long_string, Toast.LENGTH_SHORT).show();
+
+                } else if (response.code() == 607) {
+
+                    Toast.makeText(getApplicationContext(), R.string.too_young_string, Toast.LENGTH_SHORT).show();
+
                 }
+
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarRegister);
+                progressBar.setVisibility(View.GONE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
             }
 
@@ -98,6 +146,10 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                 Toast.makeText(getApplicationContext(), R.string.error_register_string, Toast.LENGTH_SHORT).show();
+
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarRegister);
+                progressBar.setVisibility(View.GONE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
             }
         });
