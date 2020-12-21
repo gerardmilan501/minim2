@@ -51,7 +51,7 @@ public class LoginRegisterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_loginregister, container, false);
+        view = inflater.inflate(R.layout.fragment_login_register, container, false);
 
         view.findViewById(R.id.btnGotoLogin).setOnClickListener(this::btnGotoLoginClick);
         view.findViewById(R.id.btnGotoRegister).setOnClickListener(this::btnGotoRegisterClick);
@@ -62,7 +62,7 @@ public class LoginRegisterFragment extends Fragment {
     public void btnGotoRegisterClick(android.view.View u){
         Log.d("DebugTag","Usuario quiere acceder al Register.");
 
-        Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_registerFragment);
+        Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_registerFragment);
 
 
     }
@@ -70,7 +70,7 @@ public class LoginRegisterFragment extends Fragment {
     public void btnGotoLoginClick(android.view.View v){
         Log.d("DebugTag","Usuario quiere acceder al Login.");
 
-        Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_loginFragment);
+        Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_loginFragment);
 
 
     }
