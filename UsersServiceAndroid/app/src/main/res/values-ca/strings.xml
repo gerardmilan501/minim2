@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Projecte DSA</string>
+    <string name="app_name">Firefighter Adventure</string>
     <string name="login_string">Inicia sessió</string>
     <string name="password_string">Contrasenya</string>
     <string name="username_string">Usuari</string>

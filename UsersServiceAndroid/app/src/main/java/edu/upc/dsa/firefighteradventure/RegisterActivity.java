@@ -1,4 +1,4 @@
-package edu.upc.dsa.userserviceandroid;
+package edu.upc.dsa.firefighteradventure;
 
 import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.OkHttpClient;
@@ -12,7 +12,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,35 +20,36 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
-
-    public static final String EXTRA_MESSAGE = "edu.upc.dsa.LoginSignupMeri.MESSAGE";
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
+        setContentView(R.layout.activity_signup);
     }
+    public void btnSignupClick(android.view.View u){
 
-    public void btnLoginClick(android.view.View u){
+        EditText etUsernameSignup = findViewById(R.id.etUsernameSignup);
+        EditText etPwdSignup = findViewById(R.id.etPwdSignup);
+        EditText etConfirmPwdSingup = findViewById(R.id.etConfirmPwdSignup);
 
-        Log.d("DebugTag","Usuario ha pulsado el botón para logearse.");
-
-     //   Intent intent = new Intent(LoginActivity.this, Cataleg.class);
-        EditText etUsername = (EditText) findViewById(R.id.etUsername);
-        EditText etPassword = (EditText) findViewById(R.id.etPwd);
-
-        if (etUsername.getText().toString().equals("")) {
+        if (etUsernameSignup.getText().toString().equals("")) {
 
             Toast.makeText(getApplicationContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
 
-        } else if (etPassword.getText().toString().equals("")) {
+        } else if (etPwdSignup.getText().toString().equals("")) {
 
             Toast.makeText(getApplicationContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
 
-        }
+        } else if (etConfirmPwdSingup.getText().toString().equals("")) {
 
+            Toast.makeText(getApplicationContext(), R.string.write_confirm_password_string, Toast.LENGTH_SHORT).show();
+
+        } else if (!etConfirmPwdSingup.getText().toString().equals(etPwdSignup.getText().toString())) {
+
+            Toast.makeText(getApplicationContext(), R.string.passwords_not_match_string, Toast.LENGTH_SHORT).show();
+
+        }
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         OkHttpClient client = new OkHttpClient.Builder()
@@ -66,31 +66,29 @@ public class LoginActivity extends AppCompatActivity {
 
         UsersService service = retrofit.create(UsersService.class);
 
-        Call<ResponseBody> resp = service.loginUser(etUsername.getText().toString(), etPassword.getText().toString());
+        Call<ResponseBody> resp = service.registerUser(etUsernameSignup.getText().toString(), etPwdSignup.getText().toString());
 
         resp.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                if (response.code() == 601) {
+                Log.d("DebugTag", String.valueOf(response.code()));
+
+                if (response.code() == 600) {
 
                     Toast.makeText(getApplicationContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
 
-                } else if (response.code() == 602) {
+                } else if (response.code() == 601) {
 
                     Toast.makeText(getApplicationContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
 
                 } else if (response.code() == 201) {
 
-                    Toast.makeText(getApplicationContext(), R.string.login_succesful_string, Toast.LENGTH_SHORT).show();
-
-                } else if (response.code() == 603) {
-
-                    Toast.makeText(getApplicationContext(), R.string.incorrect_password_string, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.succesful_register_string, Toast.LENGTH_SHORT).show();
 
                 } else if (response.code() == 250) {
 
-                    Toast.makeText(getApplicationContext(), R.string.user_not_exists_string, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.user_already_exists_string, Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -99,12 +97,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-                Toast.makeText(getApplicationContext(), R.string.error_login_string, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.error_register_string, Toast.LENGTH_SHORT).show();
 
             }
         });
 
 
+
+        Log.d("DebugTag","Usuario ha pulsado el botón para registrarse.");
+        // Intent intent1 = new Intent(MainActivity.this, SignupActivity.class);
+        //intent.putExtra("nombre","Meri");
+        // startActivity(intent1);
     }
 
     @Override

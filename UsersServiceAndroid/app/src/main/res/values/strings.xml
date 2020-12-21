@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DSA Project</string>
+    <string name="app_name">Firefighter Adventure</string>
     <string name="login_string">Login</string>
     <string name="welcome_back_string">Welcome back! 😎</string>
     <string name="users_string">Users</string>

@@ -1,4 +1,4 @@
-package edu.upc.dsa.userserviceandroid;
+package edu.upc.dsa.firefighteradventure;
 
 public class Users {
 
