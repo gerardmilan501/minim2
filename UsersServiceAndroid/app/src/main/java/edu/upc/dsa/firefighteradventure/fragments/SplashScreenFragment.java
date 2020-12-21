@@ -71,12 +71,11 @@ public class SplashScreenFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         SharedPreferences prefs = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         String username = prefs.getString("username","");
         String pwd = prefs.getString("password","");
 
-        if (username.equals("")){
+        if (username.equals("")) {
             Navigation.findNavController(view).navigate(R.id.loginRegisterFragment);
         } else {
             Navigation.findNavController(view).navigate(R.id.mainMenuFragment);
