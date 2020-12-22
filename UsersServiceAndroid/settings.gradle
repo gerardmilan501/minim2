@@ -1,2 +1,2 @@
-rootProject.name='TrackServiceAndroid'
+rootProject.name='FireFighterAdventure'
 include ':app'

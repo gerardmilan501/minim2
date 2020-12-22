@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("edu.upc.dsa.trackserviceandroid", appContext.getPackageName());
+        assertEquals("edu.upc.dsa.firefighteradventure", appContext.getPackageName());
     }
 }

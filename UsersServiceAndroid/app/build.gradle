@@ -10,7 +10,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "edu.upc.dsa.trackserviceandroid"
+        applicationId "edu.upc.dsa.firefighteradventure"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
