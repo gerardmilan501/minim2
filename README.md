@@ -1,6 +1,6 @@
 
 
-Lluís: Cuando tenga tiempo (a partir del sábado) seguiré con la App. Lo siguiente que intentaré añadir es:
+App:
 -> Pulir un poco más todo el tema de la API
 -> Fotos de perfil para los usuarios
 -> Ordenar a los usuarios por puntuación en la lista (para que sea un ranking)
