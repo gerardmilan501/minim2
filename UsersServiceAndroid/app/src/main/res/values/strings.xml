@@ -29,6 +29,9 @@
     <string name="email_string">Email</string>
     <string name="birthdate_string">Birthdate</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delete_account_string">Delete my account</string>
+    <string name="change_password_string">Change password</string>
+    <string name="change_email_string">Change email</string>
+    <string name="hello_string">Hello</string>
 
 </resources>

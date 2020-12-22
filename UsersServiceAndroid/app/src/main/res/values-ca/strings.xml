@@ -29,5 +29,9 @@
     <string name="too_young_string">Ets massa jove per jugar</string>
     <string name="email_string">Email</string>
     <string name="birthdate_string">Data de naixement</string>
+    <string name="delete_account_string">Donar-me de baixa</string>
+    <string name="change_password_string">Canvia contrasenya</string>
+    <string name="change_email_string">Canvia email</string>
+    <string name="hello_string">Hola</string>
 
 </resources>
