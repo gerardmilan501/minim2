@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Firefighter Adventure</string>
+    <string name="login_string">Login</string>
+    <string name="welcome_back_string">Welcome back! 😎</string>
+    <string name="users_string">Users</string>
+    <string name="show_users_string">Show users</string>
+    <string name="register_string">Register</string>
+    <string name="username_string">Username</string>
+    <string name="password_string">Password</string>
+    <string name="show_users_error_string">Error while trying to get user list 😵</string>
+    <string name="confirm_password_string">Confirm password</string>
+    <string name="passwords_not_match_string">Passwords do not match</string>
+    <string name="write_username_string">You must write an username</string>
+    <string name="write_password_string">You must write a password</string>
+    <string name="write_email_string">You must write an email</string>
+    <string name="write_birthdate_string">You must write a birthdate</string>
+    <string name="write_confirm_password_string">You must confirm your password</string>
+    <string name="succesful_register_string">Register succesful!</string>
+    <string name="error_register_string">Error while trying to register user</string>
+    <string name="login_succesful_string">Login succesful!</string>
+    <string name="user_already_exists_string">A user with that name already exists</string>
+    <string name="incorrect_password_string">Incorrect password</string>
+    <string name="error_login_string">Error while trying to login</string>
+    <string name="user_not_exists_string">There is no user with that name</string>
+    <string name="username_short_long_string">Your username must be between 4 and 20 characters</string>
+    <string name="password_short_long_string">Your password must be between 4 and 20 characters</string>
+    <string name="email_short_long_string">Your email must be between 4 and 30 characters</string>
+    <string name="too_young_string">You are too young to play</string>
+    <string name="email_string">Email</string>
+    <string name="birthdate_string">Birthdate</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="delete_account_string">Delete my account</string>
+    <string name="change_password_string">Change password</string>
+    <string name="change_email_string">Change email</string>
+    <string name="hello_string">Hello</string>
+
+</resources>
