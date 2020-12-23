@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
-import edu.upc.dsa.firefighteradventure.models.Users;
+import edu.upc.dsa.firefighteradventure.models.User;
 
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<Users> values;
+    private List<User> values;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -30,7 +30,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public void add(int position, Users item) {
+    public void add(int position, User item) {
         values.add(position, item);
         notifyItemInserted(position);
     }
@@ -41,7 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<Users> myDataset) {
+    public MyAdapter(List<User> myDataset) {
         values = myDataset;
     }
 

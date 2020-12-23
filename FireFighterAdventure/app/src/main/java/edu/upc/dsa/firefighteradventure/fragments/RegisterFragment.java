@@ -134,7 +134,7 @@ public class RegisterFragment extends Fragment {
 
         UsersService service = retrofit.create(UsersService.class);
 
-        Call<ResponseBody> resp = service.registerUser(new RegisterCredentials(etUsernameSignup.getText().toString(), etPwdSignup.getText().toString(), etEmail.getText().toString(), etBirthdate.getText().toString()));
+        Call<ResponseBody> resp = service.register(new RegisterCredentials(etUsernameSignup.getText().toString(), etPwdSignup.getText().toString(), etEmail.getText().toString(), etBirthdate.getText().toString()));
 
         resp.enqueue(new Callback<ResponseBody>() {
             @Override

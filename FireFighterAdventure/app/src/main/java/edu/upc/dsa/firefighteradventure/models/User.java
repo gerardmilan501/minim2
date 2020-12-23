@@ -1,6 +1,6 @@
 package edu.upc.dsa.firefighteradventure.models;
 
-public class Users {
+public class User {
 
     private String id;
     private String username;

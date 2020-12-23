@@ -33,5 +33,8 @@
     <string name="change_password_string">Change password</string>
     <string name="change_email_string">Change email</string>
     <string name="hello_string">Hello</string>
+    <string name="confirm_new_password_string">Confirm new password</string>
+    <string name="new_password_string">New password</string>
+    <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

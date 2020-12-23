@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,7 +18,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import edu.upc.dsa.firefighteradventure.models.Users;
+import edu.upc.dsa.firefighteradventure.models.User;
 import edu.upc.dsa.firefighteradventure.services.UsersService;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -70,12 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
             UsersService service = retrofit.create(UsersService.class);
 
-            Call<List<Users>> users = service.listUsers();
+            Call<List<User>> users = service.listUsers();
 
-            users.enqueue(new Callback<List<Users>>() {
+            users.enqueue(new Callback<List<User>>() {
                 @Override
-                public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
-                    List<Users> result = response.body();
+                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                    List<User> result = response.body();
                     setContentView(R.layout.lista_tracks);
                     recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<List<Users>> call, Throwable t) {
+                public void onFailure(Call<List<User>> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), R.string.show_users_error_string, Toast.LENGTH_SHORT).show();
                 }
 

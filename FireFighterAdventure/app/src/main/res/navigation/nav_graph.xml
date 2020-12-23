@@ -23,7 +23,11 @@
         android:id="@+id/profileFragment"
         android:name="edu.upc.dsa.firefighteradventure.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/shopFragment"
         android:name="edu.upc.dsa.firefighteradventure.fragments.ShopFragment"
@@ -86,4 +90,9 @@
             android:id="@+id/action_mainMenuFragment_to_shopFragment"
             app:destination="@id/shopFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="edu.upc.dsa.firefighteradventure.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
 </navigation>

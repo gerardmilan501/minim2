@@ -1,10 +1,7 @@
 package edu.upc.dsa.firefighteradventure.fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Credentials;
-import android.net.wifi.hotspot2.pps.Credential;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,11 +20,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -84,8 +79,8 @@ public class LoginFragment extends Fragment {
 
         Log.d("DebugTag","Usuario ha pulsado el botón para logearse.");
 
-        EditText etUsername = (EditText) view.findViewById(R.id.etUsername);
-        EditText etPassword = (EditText) view.findViewById(R.id.etPwd);
+        EditText etUsername = (EditText) view.findViewById(R.id.etUsernameLogin);
+        EditText etPassword = (EditText) view.findViewById(R.id.etPasswordLogin);
 
         if (etUsername.getText().toString().equals("")) {
 
@@ -122,7 +117,7 @@ public class LoginFragment extends Fragment {
 
         UsersService service = retrofit.create(UsersService.class);
 
-        Call<ResponseBody> resp = service.loginUser(new LoginCredentials(etUsername.getText().toString(), etPassword.getText().toString()));
+        Call<ResponseBody> resp = service.login(new LoginCredentials(etUsername.getText().toString(), etPassword.getText().toString()));
 
         resp.enqueue(new Callback<ResponseBody>() {
             @Override

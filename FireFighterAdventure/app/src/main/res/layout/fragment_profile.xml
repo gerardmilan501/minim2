@@ -51,7 +51,7 @@
         tools:layout_editor_absoluteY="186dp" />
 
     <Button
-        android:id="@+id/btnChangePassword"
+        android:id="@+id/btnGotoChangePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/change_password_string"
@@ -60,7 +60,7 @@
         tools:layout_editor_absoluteY="439dp" />
 
     <Button
-        android:id="@+id/btnChangeEmail"
+        android:id="@+id/btnGotoChangeEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/change_email_string"

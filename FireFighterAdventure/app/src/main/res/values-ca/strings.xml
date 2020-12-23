@@ -33,5 +33,7 @@
     <string name="change_password_string">Canvia contrasenya</string>
     <string name="change_email_string">Canvia email</string>
     <string name="hello_string">Hola</string>
+    <string name="confirm_new_password_string">Confirma la nova contrasenya</string>
+    <string name="new_password_string">Nova contrasenya</string>
 
 </resources>
