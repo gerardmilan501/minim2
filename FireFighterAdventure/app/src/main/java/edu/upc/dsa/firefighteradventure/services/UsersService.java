@@ -6,7 +6,6 @@ import edu.upc.dsa.firefighteradventure.models.ChangePasswordCredentials;
 import edu.upc.dsa.firefighteradventure.models.LoginCredentials;
 import edu.upc.dsa.firefighteradventure.models.RegisterCredentials;
 import edu.upc.dsa.firefighteradventure.models.User;
-import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,6 +14,7 @@ import retrofit2.http.POST;
 
 
 public interface UsersService {
+
     @GET("users")
     Call<List<User>> listUsers();
 

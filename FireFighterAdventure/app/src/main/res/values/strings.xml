@@ -36,5 +36,7 @@
     <string name="confirm_new_password_string">Confirm new password</string>
     <string name="new_password_string">New password</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="forgotten_password_string">I forgot my password</string>
+    <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

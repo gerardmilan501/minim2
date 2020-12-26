@@ -8,17 +8,17 @@
     tools:context=".fragments.RegisterFragment">
 
     <TextView
-        android:id="@+id/tvConfirmPassword"
+        android:id="@+id/tvConfirmPasswordRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/confirm_password_string"
         android:textColor="@android:color/background_dark"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etConfirmPwdSignup"
-        app:layout_constraintStart_toStartOf="@+id/etConfirmPwdSignup" />
+        app:layout_constraintBottom_toTopOf="@+id/etConfirmPasswordRegister"
+        app:layout_constraintStart_toStartOf="@+id/etConfirmPasswordRegister" />
 
     <EditText
-        android:id="@+id/etConfirmPwdSignup"
+        android:id="@+id/etConfirmPasswordRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/textbox"
@@ -61,7 +61,7 @@
         app:layout_constraintVertical_bias="0.89" />
 
     <EditText
-        android:id="@+id/etUsernameSignup"
+        android:id="@+id/etUsernameRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/textbox"
@@ -75,13 +75,13 @@
         app:layout_constraintVertical_bias="0.19999999" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etEmailRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/textbox"
         android:backgroundTint="@color/colorPrimary"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,7 @@
         app:layout_constraintVertical_bias="0.58000004" />
 
     <EditText
-        android:id="@+id/etBirthdate"
+        android:id="@+id/etBirthdateRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/textbox"
@@ -103,7 +103,7 @@
         app:layout_constraintVertical_bias="0.72" />
 
     <EditText
-        android:id="@+id/etPwdSignup"
+        android:id="@+id/etPasswordRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/textbox"
@@ -117,44 +117,44 @@
         app:layout_constraintVertical_bias="0.32" />
 
     <TextView
-        android:id="@+id/tvUsername2"
+        android:id="@+id/tvUsernameRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username_string"
         android:textColor="@android:color/background_dark"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etUsernameSignup"
-        app:layout_constraintStart_toStartOf="@+id/etUsernameSignup" />
+        app:layout_constraintBottom_toTopOf="@+id/etUsernameRegister"
+        app:layout_constraintStart_toStartOf="@+id/etUsernameRegister" />
 
     <TextView
-        android:id="@+id/tvEmail"
+        android:id="@+id/tvEmailRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/email_string"
         android:textColor="@android:color/background_dark"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etEmail"
-        app:layout_constraintStart_toStartOf="@+id/etEmail" />
+        app:layout_constraintBottom_toTopOf="@+id/etEmailRegister"
+        app:layout_constraintStart_toStartOf="@+id/etEmailRegister" />
 
     <TextView
-        android:id="@+id/tvBirthdate"
+        android:id="@+id/tvBirthdateRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/birthdate_string"
         android:textColor="@android:color/background_dark"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etBirthdate"
-        app:layout_constraintStart_toStartOf="@+id/etBirthdate" />
+        app:layout_constraintBottom_toTopOf="@+id/etBirthdateRegister"
+        app:layout_constraintStart_toStartOf="@+id/etBirthdateRegister" />
 
     <TextView
-        android:id="@+id/tvPassword"
+        android:id="@+id/tvPasswordRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/password_string"
         android:textColor="@android:color/background_dark"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etPwdSignup"
-        app:layout_constraintStart_toStartOf="@+id/etPwdSignup" />
+        app:layout_constraintBottom_toTopOf="@+id/etPasswordRegister"
+        app:layout_constraintStart_toStartOf="@+id/etPasswordRegister" />
 
     <ProgressBar
         android:id="@+id/progressBarRegister"

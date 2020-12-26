@@ -11,11 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ProfileFragment extends Fragment {
+public class ChangePasswordFragment extends Fragment {
 
     private View view;
 
-    public ProfileFragment() {
+    public ChangePasswordFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_profile, container, false);
+        view = inflater.inflate(R.layout.fragment_change_password, container, false);
         return view;
 
     }

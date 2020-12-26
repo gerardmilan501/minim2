@@ -5,9 +5,18 @@ public class User {
     private String id;
     private String username;
     private String pwd;
-    String email;
-    String birthdate;
-    int score;
+    private String email;
+    private String birthdate;
+    private int score;
+
+    public User(String id, String username, String pwd, String email, String birthdate, int score) {
+        this.id = id;
+        this.username = username;
+        this.pwd = pwd;
+        this.email = email;
+        this.birthdate = birthdate;
+        this.score = score;
+    }
 
     public void setId(String id) {
         this.id = id;
@@ -56,4 +65,5 @@ public class User {
     public void setScore(int score) {
         this.score = score;
     }
+
 }

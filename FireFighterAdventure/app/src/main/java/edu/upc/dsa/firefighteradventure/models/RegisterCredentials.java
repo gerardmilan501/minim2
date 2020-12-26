@@ -2,10 +2,10 @@ package edu.upc.dsa.firefighteradventure.models;
 
 public class RegisterCredentials {
 
-    String username;
-    String password;
-    String email;
-    String birthdate;
+    private String username;
+    private String password;
+    private String email;
+    private String birthdate;
 
     public RegisterCredentials(String username, String password, String email, String birthdate) {
         this.username = username;

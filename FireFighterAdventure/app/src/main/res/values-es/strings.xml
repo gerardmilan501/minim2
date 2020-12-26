@@ -35,5 +35,6 @@
     <string name="hello_string">Hola</string>
     <string name="confirm_new_password_string">Confirma tu nueva contrasenya</string>
     <string name="new_password_string">Nueva contraseña</string>
+    <string name="forgotten_password_string">He olvidado mi contraseña</string>
 
 </resources>

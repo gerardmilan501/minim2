@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_loginFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgottenPasswordFragment"
+            app:destination="@id/forgottenPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -92,7 +95,12 @@
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="edu.upc.dsa.firefighteradventure.ChangePasswordFragment"
+        android:name="edu.upc.dsa.firefighteradventure.fragments.ChangePasswordFragment"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/forgottenPasswordFragment"
+        android:name="edu.upc.dsa.firefighteradventure.fragments.ForgottenPasswordFragment"
+        android:label="fragment_forgotten_password"
+        tools:layout="@layout/fragment_forgotten_password" />
 </navigation>

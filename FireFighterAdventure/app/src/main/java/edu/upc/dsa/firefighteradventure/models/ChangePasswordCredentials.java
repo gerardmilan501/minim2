@@ -2,9 +2,9 @@ package edu.upc.dsa.firefighteradventure.models;
 
 public class ChangePasswordCredentials {
 
-    String username;
-    String password;
-    String newPassword;
+    private String username;
+    private String password;
+    private String newPassword;
 
     public ChangePasswordCredentials(String username, String password, String newPassword) {
         this.username = username;
@@ -35,4 +35,5 @@ public class ChangePasswordCredentials {
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
     }
+
 }
