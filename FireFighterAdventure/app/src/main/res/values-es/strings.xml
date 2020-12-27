@@ -33,8 +33,12 @@
     <string name="change_password_string">Cambiar contraseña</string>
     <string name="change_email_string">Cambiar email</string>
     <string name="hello_string">Hola</string>
-    <string name="confirm_new_password_string">Confirma tu nueva contrasenya</string>
+    <string name="confirm_new_password_string">Confirma tu nueva contraseña</string>
     <string name="new_password_string">Nueva contraseña</string>
     <string name="forgotten_password_string">He olvidado mi contraseña</string>
+    <string name="yes_string">Sí</string>
+    <string name="no_string">No</string>
+    <string name="confirm_logout_string">¿Estás seguro de que quieres cerrar sesión?</string>
+    <string name="logout_string">Cerrar sesión</string>
 
 </resources>

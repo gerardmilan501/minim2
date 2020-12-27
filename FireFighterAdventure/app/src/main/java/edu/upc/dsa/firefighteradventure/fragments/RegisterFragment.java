@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
 import edu.upc.dsa.firefighteradventure.models.RegisterCredentials;
@@ -29,7 +30,6 @@ public class RegisterFragment extends Fragment {
     private EditText etConfirmPasswordRegister;
     private EditText etEmailRegister;
     private EditText etBirthdateRegister;
-    private ProgressBar progressBarRegister;
 
     MainActivity mainActivity;
 
@@ -57,7 +57,6 @@ public class RegisterFragment extends Fragment {
         etConfirmPasswordRegister = view.findViewById(R.id.etConfirmPasswordRegister);
         etEmailRegister = view.findViewById(R.id.etEmailRegister);
         etBirthdateRegister = view.findViewById(R.id.etBirthdateRegister);
-        progressBarRegister = view.findViewById(R.id.progressBarRegister);
 
         view.findViewById(R.id.btnRegister).setOnClickListener(this::btnRegisterClick);
 
@@ -66,7 +65,6 @@ public class RegisterFragment extends Fragment {
     }
 
     public void btnRegisterClick(android.view.View u){
-
 
         if (etUsernameRegister.getText().toString().equals("")) {
 
@@ -100,11 +98,7 @@ public class RegisterFragment extends Fragment {
 
         }
 
-        progressBarRegister.setProgress(0);
-        progressBarRegister.setVisibility(View.VISIBLE);
-
-        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        mainActivity.setLoadingData(true);
 
         Call<ResponseBody> resp = mainActivity.getUsersService().register(new RegisterCredentials(etUsernameRegister.getText().toString(), etPasswordRegister.getText().toString(), etEmailRegister.getText().toString(), etBirthdateRegister.getText().toString()));
 
@@ -112,52 +106,53 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                if (response.code() == 600) {
+                mainActivity.setLoadingData(false);
 
-                    Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
-
-                } else if (response.code() == 601) {
-
-                    Toast.makeText(getContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
-
-                } else if (response.code() == 201) {
+                if (response.code() == 201) {
 
                     Toast.makeText(getContext(), R.string.succesful_register_string, Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(view).navigate(R.id.action_registerFragment_to_loginFragment);
 
-                } else if (response.code() == 250) {
+                } else {
 
-                    Toast.makeText(getContext(), R.string.user_already_exists_string, Toast.LENGTH_SHORT).show();
+                    switch (response.code()) {
 
-                } else if (response.code() == 604) {
+                        case 250:
+                            Toast.makeText(getContext(), R.string.user_already_exists_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        case 600:
+                            Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        case 601:
+                            Toast.makeText(getContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        case 604:
+                            Toast.makeText(getContext(), R.string.username_short_long_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        case 605:
+                            Toast.makeText(getContext(), R.string.password_short_long_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        case 606:
+                            Toast.makeText(getContext(), R.string.email_short_long_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        case 607:
+                            Toast.makeText(getContext(), R.string.too_young_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(getContext(), R.string.error_register_string, Toast.LENGTH_SHORT).show();
+                            break;
 
-                    Toast.makeText(getContext(), R.string.username_short_long_string, Toast.LENGTH_SHORT).show();
+                    }
 
-                } else if (response.code() == 605) {
-
-                    Toast.makeText(getContext(), R.string.password_short_long_string, Toast.LENGTH_SHORT).show();
-
-                } else if (response.code() == 606) {
-
-                    Toast.makeText(getContext(), R.string.email_short_long_string, Toast.LENGTH_SHORT).show();
-
-                } else if (response.code() == 607) {
-
-                    Toast.makeText(getContext(), R.string.too_young_string, Toast.LENGTH_SHORT).show();
-
-                }
-
-                progressBarRegister.setVisibility(View.GONE);
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                 }
 
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                mainActivity.setLoadingData(false);
                 Toast.makeText(getContext(), R.string.error_register_string, Toast.LENGTH_SHORT).show();
-
-                progressBarRegister.setVisibility(View.GONE);
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
             }
         });

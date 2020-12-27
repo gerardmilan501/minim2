@@ -7,7 +7,6 @@
     android:background="#F6DE95"
     tools:context=".fragments.SplashScreenFragment">
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"

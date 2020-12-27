@@ -8,7 +8,7 @@
     tools:context=".fragments.ProfileFragment">
 
     <Button
-        android:id="@+id/btnDeleteAccount"
+        android:id="@+id/btnGotoDeleteAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/delete_account_string"

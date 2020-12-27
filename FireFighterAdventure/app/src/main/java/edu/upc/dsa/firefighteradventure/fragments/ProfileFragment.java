@@ -5,15 +5,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.R;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class ProfileFragment extends Fragment {
 
     private View view;
+    Button btnGotoChangePassword;
+    Button btnGotoChangeEmail;
+    Button btnGotoDeleteAccount;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -33,6 +38,32 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+
+        btnGotoChangePassword = view.findViewById(R.id.btnGotoChangePassword);
+        btnGotoChangeEmail = view.findViewById(R.id.btnGotoChangeEmail);
+        btnGotoDeleteAccount = view.findViewById(R.id.btnGotoDeleteAccount);
+
+        btnGotoChangePassword.setOnClickListener(this::btnGotoChangePasswordClick);
+        btnGotoChangeEmail.setOnClickListener(this::btnGotoChangeEmailClick);
+        btnGotoDeleteAccount.setOnClickListener(this::btnGotoDeleteAccountClick);
+
+    }
+
+    public void btnGotoChangePasswordClick(android.view.View u) {
+
+        Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_changePasswordFragment);
+
+    }
+
+    public void btnGotoChangeEmailClick(android.view.View u) {
+
+        Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_changeEmailFragment);
+
+    }
+
+    public void btnGotoDeleteAccountClick(android.view.View u) {
+
+        Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_deleteAccountFragment);
 
     }
 

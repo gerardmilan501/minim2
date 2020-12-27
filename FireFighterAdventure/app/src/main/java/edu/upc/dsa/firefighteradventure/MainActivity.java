@@ -1,19 +1,23 @@
 package edu.upc.dsa.firefighteradventure;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.List;
@@ -42,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private HttpLoggingInterceptor httpLoggingInterceptor;
-    private OkHttpClient okHttpClient;
-    private Retrofit retrofit;
     private UsersService usersService;
+
+    private ProgressBar progressBar;
+    private ConstraintLayout clLoading;
 
     public MainActivity(){
 
@@ -112,25 +116,41 @@ public class MainActivity extends AppCompatActivity {
 
         layoutManager = new LinearLayoutManager(this);
 
-        httpLoggingInterceptor = new HttpLoggingInterceptor();
-        okHttpClient = new OkHttpClient.Builder()
+        progressBar = findViewById(R.id.progressBar);
+        clLoading = findViewById(R.id.clLoading);
+
+        startServices();
+
+    }
+
+
+
+    private void startServices() {
+
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .build();
 
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
+        Retrofit retrofit;
+
         if (remote_machine) {
+
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://" + remote_ip + ":" + remote_port + "/dsaApp/") //10.0.2.2
+                    .baseUrl("http://" + remote_ip + ":" + remote_port + "/dsaApp/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build();
         } else {
+
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://" + local_ip + ":" + local_port + "/dsaApp/") //10.0.2.2
+                    .baseUrl("http://" + local_ip + ":" + local_port + "/dsaApp/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build();
+
         }
 
         usersService = retrofit.create(UsersService.class);
@@ -186,9 +206,62 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public String getSavedUsername() {
+
+        SharedPreferences prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        return prefs.getString("username", "");
+
+    }
+
+    public String getSavedPassword() {
+
+        SharedPreferences prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        return prefs.getString("password", "");
+
+    }
+
+    public void setSavedUsername(String username) {
+
+        SharedPreferences prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("username", username);
+        editor.apply();
+
+    }
+
+    public void setSavedPassword(String password) {
+
+        SharedPreferences prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("password", password);
+        editor.apply();
+
+    }
+
     public UsersService getUsersService() {
 
         return usersService;
+
+    }
+
+    public void setLoadingData(boolean loadingData) {
+
+        if (loadingData) {
+
+            progressBar.setProgress(0);
+            clLoading.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
+
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+        } else {
+
+            progressBar.setVisibility(View.GONE);
+            clLoading.setVisibility(View.GONE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+        }
 
     }
 }

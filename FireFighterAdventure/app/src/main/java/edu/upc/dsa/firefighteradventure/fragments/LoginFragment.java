@@ -36,9 +36,8 @@ public class LoginFragment extends Fragment {
     private View view;
     private EditText etUsernameLogin;
     private EditText etPasswordLogin;
-    ProgressBar progressBarLogin;
 
-    MainActivity mainActivity;
+    private MainActivity mainActivity;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -61,7 +60,6 @@ public class LoginFragment extends Fragment {
 
         etUsernameLogin = view.findViewById(R.id.etUsernameLogin);
         etPasswordLogin = view.findViewById(R.id.etPasswordLogin);
-        progressBarLogin = view.findViewById(R.id.progressBarLogin);
 
         view.findViewById(R.id.btnLogin).setOnClickListener(this::btnLoginClick);
         view.findViewById(R.id.btnGotoForgottenPassword).setOnClickListener(this::btnGotoForgottenPasswordClick);
@@ -90,11 +88,7 @@ public class LoginFragment extends Fragment {
 
         }
 
-        progressBarLogin.setProgress(0);
-        progressBarLogin.setVisibility(View.VISIBLE);
-
-        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        mainActivity.setLoadingData(true);
 
         Call<ResponseBody> resp = mainActivity.getUsersService().login(new LoginCredentials(etUsernameLogin.getText().toString(), etPasswordLogin.getText().toString()));
 
@@ -103,52 +97,48 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                if (response.code() == 601) {
+                mainActivity.setLoadingData(false);
 
-                    Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
-
-                } else if (response.code() == 602) {
-
-                    Toast.makeText(getContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
-
-                } else if (response.code() == 201) {
+                if (response.code() == 201) {
 
                     Toast.makeText(getContext(), R.string.login_succesful_string, Toast.LENGTH_SHORT).show();
 
-                    ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBarLogin);
-                    progressBar.setVisibility(View.GONE);
-                    getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-
-                    SharedPreferences prefs = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString("username", etUsernameLogin.getText().toString());
-                    editor.putString("password", etPasswordLogin.getText().toString());
-                    editor.commit();
+                    mainActivity.setSavedUsername(etUsernameLogin.getText().toString());
+                    mainActivity.setSavedPassword(etPasswordLogin.getText().toString());
 
                     Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_mainMenuFragment);
 
-                } else if (response.code() == 603) {
+                } else {
 
-                    Toast.makeText(getContext(), R.string.incorrect_password_string, Toast.LENGTH_SHORT).show();
+                    switch (response.code()) {
 
-                } else if (response.code() == 250) {
+                        case 250:
+                            Toast.makeText(getContext(), R.string.user_not_exists_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        case 601:
+                            Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        case 602:
+                            Toast.makeText(getContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        case 603:
+                            Toast.makeText(getContext(), R.string.incorrect_password_string, Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(getContext(), R.string.error_login_string, Toast.LENGTH_SHORT).show();
+                            break;
 
-                    Toast.makeText(getContext(), R.string.user_not_exists_string, Toast.LENGTH_SHORT).show();
+                    }
 
                 }
-
-                progressBarLogin.setVisibility(View.GONE);
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                mainActivity.setLoadingData(false);
                 Toast.makeText(getContext(), R.string.error_login_string, Toast.LENGTH_SHORT).show();
-
-                progressBarLogin.setVisibility(View.GONE);
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
             }
 

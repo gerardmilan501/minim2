@@ -28,15 +28,17 @@
     <string name="too_young_string">You are too young to play</string>
     <string name="email_string">Email</string>
     <string name="birthdate_string">Birthdate</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="delete_account_string">Delete my account</string>
     <string name="change_password_string">Change password</string>
     <string name="change_email_string">Change email</string>
     <string name="hello_string">Hello</string>
     <string name="confirm_new_password_string">Confirm new password</string>
     <string name="new_password_string">New password</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="forgotten_password_string">I forgot my password</string>
+    <string name="yes_string">Yes</string>
+    <string name="no_string">No</string>
+    <string name="confirm_logout_string">Are you sure you want to log out?</string>
+    <string name="logout_string">Logout</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
