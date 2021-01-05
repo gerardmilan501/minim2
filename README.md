@@ -12,33 +12,31 @@ App:
 -> Cualquier otra cosa que vaya surgiendo o se os ocurra
 
 
-En cuanto al backend:
--> Conectar el backend con la base de datos   ->     TINC LA BBDD.SQL PERO EL SERVIDOR DONA ERROR QUAN L'INTENTEM EXECUTAR//MVN EXEC:JAVA        !!!
 
 Web:
--> Falta vincular la web con la API           ->      debido al mismo ERROR [^]
--> Diseñar vista catálogo de mapas, objetos...?
 -> Vista para usuario modificar cualquiera de sus datos
 -> Vista para el admin para poder modificar cualquier dato de cualquier usuario
 -> Poner tabla para ver el ranking de Puntuación 
--> Vista para ver cesta de productos del usuario
--> Vista para introducir método de pago?¿
--> Vista ("Shop done!")
+-> Vista para ver cesta de productos del usuario?
+-> Vista ("Shop done!")?
 
 Backend Añadir:
--> Clase Enemigo ( Enemigo1, Enemigo2, Enemigo3)
--> Clase Objeto ( Objeto1,... )
--> Clase Arma ( Arma1,... )
--> Sesiones(Login, Logout)
+-> Clase Enemigo ( Enemigo1, Enemigo2, Enemigo3)                                            (Enemy)
 
--> ObjectSender
--> QueryHelper
--> Connectar bbdd
+-> Clase Objeto ( Objeto1,... )                                                             (Item, referintse al inventari) 
+                                                                                            però també he de afegir objecte (referint-se a objectes del mapa?)
+                                                                                            
+-> Clase Arma ( Arma1,... )                                                                Armas-> No estàn a la bbdd encara, pero poden comptar com a items, no?
+
+-> Sesiones(Login, Logout)                                                                    No se com implementar que es mantingui la sesió oberta
+
 
 Part Botiga(Backend): 
-- Clase Cistella (Lista)
-- Clase productos (Hashmap?)
-- Clase Orders (Cola) (SELECT Orders From User WHERE Username....)o millor amb ID?
+- Clase Cistella (Lista)        
+- Clase productos (Hashmap?)                                                                  (Es diu Elements a Backend)
+- Clase Orders (Cola) (SELECT Orders From User WHERE Username....)o millor amb ID?    
+                                                                                             (està feta la consulta de les dues maneres, però es millor sempre buscar amb el ID,                                                                                               perque les relacions a les taules de bbdd estàn fetes aamb els ID...)
+                                                                                             No està com a cua ENCARA...
 
 Màquina
 - BBDD.sql a máquina
