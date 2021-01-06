@@ -40,40 +40,54 @@ public class MainMenuFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.btnPlay).setOnClickListener(this::btnPlayClick);
-        view.findViewById(R.id.btnProfile).setOnClickListener(this::btnProfileClick);
-        view.findViewById(R.id.btnInventory).setOnClickListener(this::btnInventoryClick);
-        view.findViewById(R.id.btnShop).setOnClickListener(this::btnShopClick);
+        view.findViewById(R.id.btnGotoPlay).setOnClickListener(this::btnGotoPlayClick);
+        view.findViewById(R.id.btnGotoProfile).setOnClickListener(this::btnGotoProfileClick);
+        view.findViewById(R.id.btnGotoInventory).setOnClickListener(this::btnGotoInventoryClick);
+        view.findViewById(R.id.btnGotoShop).setOnClickListener(this::btnGotoShopClick);
         view.findViewById(R.id.btnLogout).setOnClickListener(this::btnLogoutClick);
+        view.findViewById(R.id.btnGotoRanking).setOnClickListener(this::btnGotoRankingClick);
 
         mainActivity = (MainActivity) getActivity();
+        mainActivity.setBackActivated(false);
+
+        if (!mainActivity.isNetworkConnected()) {
+
+            Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
+            return;
+
+        }
 
     }
 
-    public void btnPlayClick(android.view.View u) {
+    public void btnGotoPlayClick(android.view.View u) {
 
         Navigation.findNavController(view).navigate(R.id.action_mainMenuFragment_to_gameFragment);
 
     }
 
-    public void btnProfileClick(android.view.View u) {
+    public void btnGotoProfileClick(android.view.View u) {
 
 
         Navigation.findNavController(view).navigate(R.id.action_mainMenuFragment_to_profileFragment);
 
     }
 
-    public void btnInventoryClick(android.view.View u) {
+    public void btnGotoInventoryClick(android.view.View u) {
 
         Navigation.findNavController(view).navigate(R.id.action_mainMenuFragment_to_inventoryFragment);
+
+    }
+
+    public void btnGotoShopClick(android.view.View u) {
+
+        Navigation.findNavController(view).navigate(R.id.action_mainMenuFragment_to_shopFragment);
 
 
     }
 
-    public void btnShopClick(android.view.View u) {
+    public void btnGotoRankingClick(android.view.View u) {
 
-        Navigation.findNavController(view).navigate(R.id.action_mainMenuFragment_to_shopFragment);
-
+        Navigation.findNavController(view).navigate(R.id.action_mainMenuFragment_to_rankingFragment);
 
     }
 
@@ -108,6 +122,6 @@ public class MainMenuFragment extends Fragment {
         builder.setMessage(R.string.confirm_logout_string).setPositiveButton(R.string.no_string, dialogClickListener)
                 .setNegativeButton(R.string.yes_string, dialogClickListener).setTitle(R.string.logout_string).show();
 
-
     }
+
 }

@@ -1,4 +1,4 @@
-package edu.upc.dsa.firefighteradventure.models;
+package edu.upc.dsa.firefighteradventure.models.Credentials;
 
 public class LoginCredentials {
 

@@ -2,12 +2,20 @@ package edu.upc.dsa.firefighteradventure;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHost;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +28,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 import edu.upc.dsa.firefighteradventure.models.User;
@@ -34,7 +44,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final boolean remote_machine = false;
+    private static final boolean remote_machine = true;
 
     private static final String remote_ip = "147.83.7.207";
     private static final int remote_port = 8080;
@@ -42,71 +52,20 @@ public class MainActivity extends AppCompatActivity {
     private static final String local_ip = "10.0.2.2";
     private static final int local_port = 8080;
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private static final String api_name = "dsaApp";
 
     private UsersService usersService;
 
     private ProgressBar progressBar;
     private ConstraintLayout clLoading;
 
+    private FragmentContainerView nhFragment;
+
+    private boolean backActivated;
+    private boolean loadingData;
+
     public MainActivity(){
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.mymenu, menu);
-        return true;
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.btn_getuserlist) {
-
-            Call<List<User>> users = usersService.listUsers();
-
-            users.enqueue(new Callback<List<User>>() {
-                @Override
-                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-
-                    List<User> result = response.body();
-                    setContentView(R.layout.lista_tracks);
-                    recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-
-                    recyclerView.setHasFixedSize(true);
-                    // use a linear layout manager
-
-                        layoutManager = new LinearLayoutManager(getApplicationContext());
-                        recyclerView.setLayoutManager(layoutManager);
-
-                    // define an adapter
-                    mAdapter = new MyAdapter(result);
-                    recyclerView.setAdapter(mAdapter);
-
-                }
-
-                @Override
-                public void onFailure(Call<List<User>> call, Throwable t) {
-
-                    Toast.makeText(getApplicationContext(), R.string.show_users_error_string, Toast.LENGTH_SHORT).show();
-
-                }
-
-            });
-
-            return true;
-
-        } else {
-
-            return super.onOptionsItemSelected(item);
-
-        }
     }
 
     @Override
@@ -114,16 +73,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        layoutManager = new LinearLayoutManager(this);
-
         progressBar = findViewById(R.id.progressBar);
         clLoading = findViewById(R.id.clLoading);
 
+        nhFragment = findViewById(R.id.nhFragment);
+
+        setBackActivated(false);
         startServices();
 
     }
-
-
 
     private void startServices() {
 
@@ -139,14 +97,14 @@ public class MainActivity extends AppCompatActivity {
         if (remote_machine) {
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://" + remote_ip + ":" + remote_port + "/dsaApp/")
+                    .baseUrl("http://" + remote_ip + ":" + remote_port + "/" + api_name + "/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build();
         } else {
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://" + local_ip + ":" + local_port + "/dsaApp/")
+                    .baseUrl("http://" + local_ip + ":" + local_port + "/" + api_name + "/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build();
@@ -154,12 +112,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         usersService = retrofit.create(UsersService.class);
-
-    }
-
-    public void goBack(View v){
-
-        setContentView(R.layout.activity_main);
 
     }
 
@@ -263,6 +215,53 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+
+        if (isBackActivated() && !isLoadingData()) {
+
+            super.onBackPressed();
+
+        }
+
+    }
+
+    public void goBack() {
+
+        super.onBackPressed();
+
+    }
+
+    public boolean isNetworkConnected() {
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+
+    }
+
+    public void restart(){
+
+        Intent intent = getIntent();
+        this.finish();
+        startActivity(intent);
+
+    }
+
+    public boolean isBackActivated() {
+        return backActivated;
+    }
+
+    public void setBackActivated(boolean backActivated) {
+        this.backActivated = backActivated;
+    }
+
+    public boolean isLoadingData() {
+        return loadingData;
     }
 }
 

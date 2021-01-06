@@ -13,28 +13,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class GameFragment extends Fragment {
+
+public class DevelopersFragment extends Fragment {
 
     private View view;
     private MainActivity mainActivity;
 
-    public GameFragment() {
+    public DevelopersFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_game, container, false);
+        view = inflater.inflate(R.layout.fragment_developers, container, false);
         return view;
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
 
         mainActivity = (MainActivity) getActivity();
@@ -48,5 +46,4 @@ public class GameFragment extends Fragment {
         }
 
     }
-
 }

@@ -5,17 +5,27 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class DeleteAccountFragment extends Fragment {
 
     private View view;
     private MainActivity mainActivity;
+
+    private Button btnDeleteAccount;
+    private CheckBox cbDeleteAccount;
+    private EditText etPasswordDeleteAccount;
+    private EditText etConfirmPasswordDeleteAccount;
 
     public DeleteAccountFragment() {
         // Required empty public constructor
@@ -36,6 +46,45 @@ public class DeleteAccountFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
         mainActivity = (MainActivity) getActivity();
+        mainActivity.setBackActivated(true);
+
+        if (!mainActivity.isNetworkConnected()) {
+
+            Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
+            return;
+
+        }
+
+        btnDeleteAccount = view.findViewById(R.id.btnDeleteAccount);
+        cbDeleteAccount = view.findViewById(R.id.cbDeleteAccount);
+        etPasswordDeleteAccount = view.findViewById(R.id.etPasswordDeleteAccount);
+        etConfirmPasswordDeleteAccount = view.findViewById(R.id.etConfirmPasswordDeleteAccount);
+
+        btnDeleteAccount.setOnClickListener(this::btnDeleteAccountClick);
 
     }
+
+    public void btnDeleteAccountClick(android.view.View u) {
+
+        if (!cbDeleteAccount.isChecked()) {
+
+            Toast.makeText(getContext(), R.string.must_confirm_account_deletion_string, Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+
+        if (etPasswordDeleteAccount.getText().equals(etConfirmPasswordDeleteAccount.getText())) {
+
+            Toast.makeText(getContext(), R.string.passwords_not_match_string, Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+
+        mainActivity.setLoadingData(true);
+
+
+        mainActivity.setLoadingData(false);
+
+    }
+
 }

@@ -8,7 +8,6 @@
     <string name="register_string">Regístrate</string>
     <string name="username_string">Usuario</string>
     <string name="password_string">Contraseña</string>
-    <string name="show_users_error_string">Se ha producido un error al intentar obtener la lista de usuarios 😵</string>
     <string name="confirm_password_string">Confirma tu contraseña</string>
     <string name="passwords_not_match_string">Las contraseñas no coinciden</string>
     <string name="write_username_string">Debes escribir un nombre de usuario</string>
@@ -40,5 +39,14 @@
     <string name="no_string">No</string>
     <string name="confirm_logout_string">¿Estás seguro de que quieres cerrar sesión?</string>
     <string name="logout_string">Cerrar sesión</string>
+    <string name="no_internet_connection_string">¡Tu dispositivo no está conectado a Internet!</string>
+    <string name="you_need_internet_connection_string">Necesitas una conexión activa a Internet para poder jugar a Firefighter Adventure</string>
+    <string name="retry_string">Reintentar</string>
+    <string name="connection_error_string">No se ha podido establecer la conexión con el servidor de Firefighter Adventure</string>
+    <string name="confirm_new_email_string">Confirma tu nuevo email</string>
+    <string name="new_email_string">Nuevo email</string>
+    <string name="who_we_are_string">Quiénes somos</string>
+    <string name="must_confirm_account_deletion_string">Debes confirmar que quieres darte de baja</string>
+    <string name="confirm_account_deletion_string">Confirmo que quiero borrar permanentemente mi cuenta</string>
 
 </resources>

@@ -8,7 +8,7 @@
     tools:context=".fragments.SplashScreenFragment">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivNoInternet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTintMode="add"
@@ -25,7 +25,7 @@
         app:tint="@color/colorPrimaryDark" />
 
     <TextView
-        android:id="@+id/tvAppName"
+        android:id="@+id/tvNoInternet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -35,5 +35,5 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/ivNoInternet" />
 </androidx.constraintlayout.widget.ConstraintLayout>

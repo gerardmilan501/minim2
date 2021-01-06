@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
 
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 public class LoginRegisterFragment extends Fragment {
 
     private View view;
+    private MainActivity mainActivity;
 
     public LoginRegisterFragment() {
         // Required empty public constructor
@@ -35,8 +37,19 @@ public class LoginRegisterFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        mainActivity = (MainActivity) getActivity();
+        mainActivity.setBackActivated(false);
+
+        if (!mainActivity.isNetworkConnected()) {
+
+            Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
+            return;
+
+        }
+
         view.findViewById(R.id.btnGotoLogin).setOnClickListener(this::btnGotoLoginClick);
         view.findViewById(R.id.btnGotoRegister).setOnClickListener(this::btnGotoRegisterClick);
+        view.findViewById(R.id.btnGotoDevelopers).setOnClickListener(this::btnGotoDevelopersClick);
 
     }
 
@@ -49,6 +62,12 @@ public class LoginRegisterFragment extends Fragment {
     public void btnGotoLoginClick(android.view.View u){
 
         Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_loginFragment);
+
+    }
+
+    public void btnGotoDevelopersClick(android.view.View u) {
+
+        Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_developersFragment);
 
     }
 

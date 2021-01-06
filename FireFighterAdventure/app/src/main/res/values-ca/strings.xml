@@ -8,7 +8,6 @@
     <string name="users_string">Usuaris</string>
     <string name="welcome_back_string">Benvingut de nou! 😎</string>
     <string name="show_users_string">Mostra llistat d\'usuaris</string>
-    <string name="show_users_error_string">S\'ha produït un error a l\'intentar obtenir el llistat d\\\'usuaris 😵</string>
     <string name="confirm_password_string">Confirma contrasenya</string>
     <string name="passwords_not_match_string">Les contrasenyes no coincideixen</string>
     <string name="write_username_string">Has d\'escriure un nom d\'usuari</string>
@@ -40,5 +39,14 @@
     <string name="no_string">No</string>
     <string name="confirm_logout_string">Estàs segur de que vols tancar la sessió?</string>
     <string name="logout_string">Tanca la sessió</string>
+    <string name="no_internet_connection_string">El teu dispositiu no està connectat a Internet!</string>
+    <string name="you_need_internet_connection_string">Necessites una connexió activa a Internet per poder jugar a Firefighter Adventure</string>
+    <string name="retry_string">Torna-ho a provar</string>
+    <string name="connection_error_string">No s\'ha pogut establir la connexió amb el servidor de Firefighter Adventure</string>
+    <string name="confirm_new_email_string">Confirma el nou email</string>
+    <string name="new_email_string">Nou email</string>
+    <string name="who_we_are_string">Qui som</string>
+    <string name="must_confirm_account_deletion_string">Has de confirmar que vols donar-te de baixa</string>
+    <string name="confirm_account_deletion_string">Confirmo que vull esborrar permanentment el meu compte</string>
 
 </resources>

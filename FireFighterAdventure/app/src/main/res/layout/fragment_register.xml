@@ -88,17 +88,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.58000004" />
 
-    <EditText
-        android:id="@+id/etBirthdateRegister"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tvBirthdateSelectedRegister"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/textbox"
         android:backgroundTint="@color/colorPrimary"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etEmailRegister"
+        app:layout_constraintStart_toStartOf="@+id/etEmailRegister"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.72" />
 
@@ -143,8 +143,8 @@
         android:text="@string/birthdate_string"
         android:textColor="@android:color/background_dark"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etBirthdateRegister"
-        app:layout_constraintStart_toStartOf="@+id/etBirthdateRegister" />
+        app:layout_constraintBottom_toTopOf="@+id/tvBirthdateSelectedRegister"
+        app:layout_constraintStart_toStartOf="@+id/tvBirthdateSelectedRegister" />
 
     <TextView
         android:id="@+id/tvPasswordRegister"

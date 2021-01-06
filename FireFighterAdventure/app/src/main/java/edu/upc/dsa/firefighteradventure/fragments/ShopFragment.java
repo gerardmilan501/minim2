@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
 
 import android.view.LayoutInflater;
@@ -14,6 +16,8 @@ import android.view.ViewGroup;
 public class ShopFragment extends Fragment {
 
     private View view;
+
+    private MainActivity mainActivity;
 
     public ShopFragment() {
         // Required empty public constructor
@@ -33,6 +37,16 @@ public class ShopFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+
+        mainActivity = (MainActivity) getActivity();
+        mainActivity.setBackActivated(true);
+
+        if (!mainActivity.isNetworkConnected()) {
+
+            Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
+            return;
+
+        }
 
     }
 

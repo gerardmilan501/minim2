@@ -7,7 +7,6 @@
     <string name="register_string">Register</string>
     <string name="username_string">Username</string>
     <string name="password_string">Password</string>
-    <string name="show_users_error_string">Error while trying to get user list 😵</string>
     <string name="confirm_password_string">Confirm password</string>
     <string name="passwords_not_match_string">Passwords do not match</string>
     <string name="write_username_string">You must write an username</string>
@@ -15,9 +14,9 @@
     <string name="write_email_string">You must write an email</string>
     <string name="write_birthdate_string">You must write a birthdate</string>
     <string name="write_confirm_password_string">You must confirm your password</string>
-    <string name="succesful_register_string">Register succesful!</string>
+    <string name="succesful_register_string">Register successful!</string>
     <string name="error_register_string">Error while trying to register user</string>
-    <string name="login_succesful_string">Login succesful!</string>
+    <string name="login_succesful_string">Login successful!</string>
     <string name="user_already_exists_string">A user with that name already exists</string>
     <string name="incorrect_password_string">Incorrect password</string>
     <string name="error_login_string">Error while trying to login</string>
@@ -39,6 +38,15 @@
     <string name="no_string">No</string>
     <string name="confirm_logout_string">Are you sure you want to log out?</string>
     <string name="logout_string">Logout</string>
+    <string name="no_internet_connection_string">Your device is not connected to the Internet!</string>
+    <string name="you_need_internet_connection_string">You need an active Internet connection to play Firefighter Adventure</string>
+    <string name="retry_string">Retry</string>
+    <string name="connection_error_string">There has been an error while trying to connect to Firefighter Adventure server</string>
+    <string name="confirm_new_email_string">Confirm new email</string>
+    <string name="new_email_string">New email</string>
+    <string name="who_we_are_string">Who we are</string>
+    <string name="must_confirm_account_deletion_string">You must confirm that you want to delete your account</string>
+    <string name="confirm_account_deletion_string">I confirm I want to permanently delete my account</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

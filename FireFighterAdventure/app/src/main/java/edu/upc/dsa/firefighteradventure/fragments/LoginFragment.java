@@ -1,34 +1,23 @@
 package edu.upc.dsa.firefighteradventure.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
-import edu.upc.dsa.firefighteradventure.models.LoginCredentials;
-import edu.upc.dsa.firefighteradventure.services.UsersService;
-import okhttp3.OkHttpClient;
+import edu.upc.dsa.firefighteradventure.models.Credentials.LoginCredentials;
 import okhttp3.ResponseBody;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class LoginFragment extends Fragment {
@@ -58,13 +47,21 @@ public class LoginFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        mainActivity = (MainActivity) getActivity();
+        mainActivity.setBackActivated(true);
+
+        if (!mainActivity.isNetworkConnected()) {
+
+            Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
+            return;
+
+        }
+
         etUsernameLogin = view.findViewById(R.id.etUsernameLogin);
         etPasswordLogin = view.findViewById(R.id.etPasswordLogin);
 
         view.findViewById(R.id.btnLogin).setOnClickListener(this::btnLoginClick);
         view.findViewById(R.id.btnGotoForgottenPassword).setOnClickListener(this::btnGotoForgottenPasswordClick);
-
-        mainActivity = (MainActivity) getActivity();
 
     }
 
@@ -138,7 +135,7 @@ public class LoginFragment extends Fragment {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                 mainActivity.setLoadingData(false);
-                Toast.makeText(getContext(), R.string.error_login_string, Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
 
             }
 

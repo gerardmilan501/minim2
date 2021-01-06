@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
 
@@ -36,6 +37,14 @@ public class ChangeEmailFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
         mainActivity = (MainActivity) getActivity();
+        mainActivity.setBackActivated(true);
+
+        if (!mainActivity.isNetworkConnected()) {
+
+            Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
+            return;
+
+        }
 
     }
 }

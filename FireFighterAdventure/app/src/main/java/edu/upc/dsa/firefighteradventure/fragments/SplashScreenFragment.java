@@ -1,7 +1,5 @@
 package edu.upc.dsa.firefighteradventure.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
-import edu.upc.dsa.firefighteradventure.models.LoginCredentials;
+import edu.upc.dsa.firefighteradventure.models.Credentials.LoginCredentials;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,8 +17,6 @@ import retrofit2.Response;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class SplashScreenFragment extends Fragment {
@@ -48,6 +44,14 @@ public class SplashScreenFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mainActivity = (MainActivity) getActivity();
+        mainActivity.setBackActivated(false);
+
+        if (!mainActivity.isNetworkConnected()) {
+
+            Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
+            return;
+
+        }
 
         String username = mainActivity.getSavedUsername();
         String password = mainActivity.getSavedPassword();
@@ -103,8 +107,7 @@ public class SplashScreenFragment extends Fragment {
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-                    Toast.makeText(getContext(), R.string.error_login_string, Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(view).navigate(R.id.action_splashScreenFragment_to_loginRegisterFragment);
+                    Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
 
                 }
 

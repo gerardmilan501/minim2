@@ -23,8 +23,8 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_registerFragment_to_loginRegisterFragment"
+            app:destination="@id/loginRegisterFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -75,6 +75,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_loginRegisterFragment_to_developersFragment"
+            app:destination="@id/developersFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -87,12 +90,6 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
-        <action
-            android:id="@+id/action_splashScreenFragment_to_noInternetConnectionFragment"
-            app:destination="@id/noInternetConnectionFragment" />
-        <action
-            android:id="@+id/action_splashScreenFragment_to_connectionErrorFragment"
-            app:destination="@id/connectionErrorFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainMenuFragment"
@@ -111,6 +108,9 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_shopFragment"
             app:destination="@id/shopFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_rankingFragment"
+            app:destination="@id/rankingFragment" />
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
@@ -142,4 +142,14 @@
         android:name="edu.upc.dsa.firefighteradventure.fragments.ConnectionErrorFragment"
         android:label="fragment_connection_error"
         tools:layout="@layout/fragment_connection_error" />
+    <fragment
+        android:id="@+id/developersFragment"
+        android:name="edu.upc.dsa.firefighteradventure.fragments.DevelopersFragment"
+        android:label="fragment_developers"
+        tools:layout="@layout/fragment_developers" />
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="edu.upc.dsa.firefighteradventure.fragments.RankingFragment"
+        android:label="fragment_ranking"
+        tools:layout="@layout/fragment_ranking" />
 </navigation>

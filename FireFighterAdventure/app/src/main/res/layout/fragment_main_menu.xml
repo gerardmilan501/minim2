@@ -23,7 +23,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnPlay"
+                android:id="@+id/btnGotoPlay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -32,7 +32,7 @@
                 android:backgroundTintMode="src_in" />
 
             <Button
-                android:id="@+id/btnProfile"
+                android:id="@+id/btnGotoProfile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -47,7 +47,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnInventory"
+                android:id="@+id/btnGotoInventory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -57,7 +57,7 @@
                 android:backgroundTint="@color/colorPrimary" />
 
             <Button
-                android:id="@+id/btnShop"
+                android:id="@+id/btnGotoShop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -74,7 +74,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnNothing"
+                android:id="@+id/btnGotoRanking"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"

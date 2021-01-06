@@ -5,17 +5,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class ConnectionErrorFragment extends Fragment {
 
     private View view;
     private MainActivity mainActivity;
+    private Button btnRetryConnectionError;
 
     public ConnectionErrorFragment() {
         // Required empty public constructor
@@ -35,7 +38,19 @@ public class ConnectionErrorFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+
         mainActivity = (MainActivity) getActivity();
+        mainActivity.setBackActivated(false);
+
+        btnRetryConnectionError = view.findViewById(R.id.btnRetryConnectionError);
+        btnRetryConnectionError.setOnClickListener(this::btnRetryConnectionErrorClick);
 
     }
+
+    public void btnRetryConnectionErrorClick(android.view.View u) {
+
+       mainActivity.goBack();
+
+    }
+
 }

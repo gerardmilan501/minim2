@@ -11,11 +11,13 @@ import edu.upc.dsa.firefighteradventure.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class NoInternetConnectionFragment extends Fragment {
 
     private View view;
     private MainActivity mainActivity;
+    private Button btnRetryNoInternetConnection;
 
     public NoInternetConnectionFragment() {
         // Required empty public constructor
@@ -36,6 +38,18 @@ public class NoInternetConnectionFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
         mainActivity = (MainActivity) getActivity();
+        mainActivity.setBackActivated(false);
+
+        btnRetryNoInternetConnection = view.findViewById(R.id.btnRetryNoInternetConnection);
+
+        btnRetryNoInternetConnection.setOnClickListener(this::btnRetryNoInternetConnectionClick);
 
     }
+
+    public void btnRetryNoInternetConnectionClick(android.view.View u) {
+
+        mainActivity.restart();
+
+    }
+
 }

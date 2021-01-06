@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
 
 import android.view.LayoutInflater;
@@ -19,6 +20,8 @@ public class ProfileFragment extends Fragment {
     Button btnGotoChangePassword;
     Button btnGotoChangeEmail;
     Button btnGotoDeleteAccount;
+
+    private MainActivity mainActivity;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -38,6 +41,16 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+
+        mainActivity = (MainActivity) getActivity();
+        mainActivity.setBackActivated(true);
+
+        if (!mainActivity.isNetworkConnected()) {
+
+            Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
+            return;
+
+        }
 
         btnGotoChangePassword = view.findViewById(R.id.btnGotoChangePassword);
         btnGotoChangeEmail = view.findViewById(R.id.btnGotoChangeEmail);
