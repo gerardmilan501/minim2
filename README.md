@@ -3,13 +3,10 @@
 App:
 -> Pulir un poco más todo el tema de la API
 -> Fotos de perfil para los usuarios
--> Ordenar a los usuarios por puntuación en la lista (para que sea un ranking)
--> Añadir opción de borrar usuario (darse de baja)                       (Pots posar-ho dins de la pantalla aquesta ^)
+-> Añadir opción de borrar usuario (darse de baja)         
 -> Obligar a que las contraseñas introducidas tengan un cierto formato (por ejemplo mínimo 1 mayúscula y 1 minúscula, 1 carácter especial, 1 número...)
 -> Si se añade el campo "email" al register o al login, añadir un sistema mediante el cual se compruebe que el formato del email introducido es el correcto (básicamente para que no se pueda escribir algo que no sea un email)
 -> Vista de admin
-
--> Cualquier otra cosa que vaya surgiendo o se os ocurra
 
 
 
@@ -39,5 +36,4 @@ Part Botiga(Backend):
                                                                                              No està com a cua ENCARA...
 
 Màquina
-- BBDD.sql a máquina
 - Exportar BBDD DESDE la máquina a IntellIJ
