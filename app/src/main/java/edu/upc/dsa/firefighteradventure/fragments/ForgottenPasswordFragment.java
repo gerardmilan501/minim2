@@ -12,12 +12,21 @@ import edu.upc.dsa.firefighteradventure.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class ForgottenPasswordFragment extends Fragment {
 
     private View view;
     private MainActivity mainActivity;
+
+    private Button btnBackForgottenPassword;
+    private Button btnRecoverPassword;
+
+    private EditText etUsernameForgottenPassword;
+    private EditText etEmailForgottenPassword;
 
     public ForgottenPasswordFragment() {
         // Required empty public constructor
@@ -45,6 +54,30 @@ public class ForgottenPasswordFragment extends Fragment {
 
             Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
             return;
+
+        }
+
+        btnBackForgottenPassword = view.findViewById(R.id.btnBackForgottenPassword);
+        btnRecoverPassword = view.findViewById(R.id.btnRecoverPassword);
+        etUsernameForgottenPassword = view.findViewById(R.id.etUsernameForgottenPassword);
+        etEmailForgottenPassword = view.findViewById(R.id.etEmailForgottenPassword);
+
+        btnBackForgottenPassword.setOnClickListener(this::btnBackForgottenPasswordClick);
+        btnRecoverPassword.setOnClickListener(this::btnRecoverPasswordClick);
+
+    }
+
+    public void btnBackForgottenPasswordClick(android.view.View u) {
+
+        mainActivity.goBack();
+
+    }
+
+    public void btnRecoverPasswordClick(android.view.View u) {
+
+        if (etUsernameForgottenPassword.getText().toString().equals("") && etEmailForgottenPassword.getText().toString().equals("")) {
+
+            Toast.makeText(getContext(), R.string.either_username_email_string, Toast.LENGTH_SHORT).show();
 
         }
 

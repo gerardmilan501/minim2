@@ -10,12 +10,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
+
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="100dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +25,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:orientation="horizontal">
@@ -36,21 +37,25 @@
                 android:layout_gravity="center|center_horizontal|center_vertical"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/sumy" />
+                android:adjustViewBounds="true"
+                android:background="@drawable/sumy"
+                android:scaleType="centerInside" />
 
             <ImageView
                 android:id="@+id/ivEric"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|center_horizontal|center_vertical"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
+                android:adjustViewBounds="false"
+                android:scaleType="centerInside"
                 tools:src="@tools:sample/avatars" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:orientation="horizontal">
@@ -62,7 +67,9 @@
                 android:layout_gravity="center|center_horizontal|center_vertical"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/meri" />
+                android:adjustViewBounds="true"
+                android:background="@drawable/meri"
+                android:scaleType="centerInside" />
 
             <ImageView
                 android:id="@+id/ivSuhail"
@@ -71,12 +78,14 @@
                 android:layout_gravity="center|center_horizontal|center_vertical"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/suha" />
+                android:adjustViewBounds="true"
+                android:background="@drawable/suha"
+                android:scaleType="centerInside" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:layout_weight="1"
@@ -89,7 +98,9 @@
                 android:layout_gravity="center|center_horizontal|center_vertical"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                tools:src="@tools:sample/avatars" />
+                android:adjustViewBounds="true"
+                android:background="@drawable/lluis"
+                android:scaleType="centerInside" />
 
             <ImageView
                 android:id="@+id/ivGerard"
@@ -98,7 +109,9 @@
                 android:layout_gravity="center|center_horizontal|center_vertical"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                tools:src="@tools:sample/avatars" />
+                android:adjustViewBounds="true"
+                android:background="@drawable/gerard"
+                android:scaleType="centerInside" />
         </LinearLayout>
     </LinearLayout>
 
@@ -114,5 +127,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnBackDevelopers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/back_string"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

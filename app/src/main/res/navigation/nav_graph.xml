@@ -152,4 +152,9 @@
         android:name="edu.upc.dsa.firefighteradventure.fragments.RankingFragment"
         android:label="fragment_ranking"
         tools:layout="@layout/fragment_ranking" />
+    <fragment
+        android:id="@+id/profileGeneralFragment"
+        android:name="edu.upc.dsa.firefighteradventure.fragments.ProfileGeneralFragment"
+        android:label="fragment_profile_general"
+        tools:layout="@layout/fragment_profile_general" />
 </navigation>

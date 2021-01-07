@@ -6,10 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import edu.upc.dsa.firefighteradventure.MainActivity;
-import edu.upc.dsa.firefighteradventure.MyAdapter;
 import edu.upc.dsa.firefighteradventure.R;
 import edu.upc.dsa.firefighteradventure.models.Credentials.GetUserCredentials;
 import edu.upc.dsa.firefighteradventure.models.RankingPositionResponse;
@@ -24,36 +21,41 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.List;
-
-
-public class RankingFragment extends Fragment {
+public class ProfileGeneralFragment extends Fragment {
 
     private View view;
+    MainActivity mainActivity;
 
-    private MainActivity mainActivity;
+    private Button btnBackProfileGeneral;
 
-    private Button btnBackRanking;
+    private String username;
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private TextView tvProfileGeneralUsername;
+    private TextView tvProfileGeneralBirthdate;
+    private TextView tvProfileGeneralEmail;
+    private TextView tvProfileGeneralLevel;
+    private TextView tvProfileGeneralScore;
 
-    private TextView tvYourPositionIs;
+    private TextView tvProfileGeneralRankingPosition;
 
+    public ProfileGeneralFragment() {
 
-    public RankingFragment() {
-        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        username = getArguments().getString("username");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_ranking, container, false);
+        view = inflater.inflate(R.layout.fragment_profile_general, container, false);
         return view;
-
     }
 
     @Override
@@ -70,35 +72,38 @@ public class RankingFragment extends Fragment {
 
         }
 
-        btnBackRanking = view.findViewById(R.id.btnBackRanking);
-        tvYourPositionIs = view.findViewById(R.id.tvYourPositionIs);
+        tvProfileGeneralUsername = view.findViewById(R.id.tvProfileGeneralUsername);
+        tvProfileGeneralBirthdate = view.findViewById(R.id.tvProfileGeneralBirthdate);
+        tvProfileGeneralEmail = view.findViewById(R.id.tvProfileGeneralEmail);
+        tvProfileGeneralLevel = view.findViewById(R.id.tvProfileGeneralLevel);
+        tvProfileGeneralScore = view.findViewById(R.id.tvProfileGeneralScore);
 
-        btnBackRanking.setOnClickListener(this::btnBackRankingClick);
+        btnBackProfileGeneral = view.findViewById(R.id.btnBackProfileGeneral);
+
+        tvProfileGeneralRankingPosition = view.findViewById(R.id.tvProfileGeneralRankingPosition);
+
+        btnBackProfileGeneral.setOnClickListener(this::btnBackProfileGeneralClick);
 
         mainActivity.setLoadingData(true);
 
-        Call<List<User>> users = mainActivity.getGameService().getRanking();
+        Call<User> user = mainActivity.getUserService().getUserByUsername(new GetUserCredentials(username));
 
-        users.enqueue(new Callback<List<User>>() {
+        user.enqueue(new Callback<User>() {
 
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
 
                 mainActivity.setLoadingData(false);
 
-                if (response.code() == 201) {
+                if (response.code() == 200) {
 
-                    List<User> result = response.body();
-                    recyclerView = view.findViewById(R.id.my_recycler_view);
+                    User result = response.body();
 
-                    recyclerView.setHasFixedSize(true);
-
-                    layoutManager = new LinearLayoutManager(getContext());
-                    recyclerView.setLayoutManager(layoutManager);
-
-                    // define an adapter
-                    mAdapter = new MyAdapter(result);
-                    recyclerView.setAdapter(mAdapter);
+                    tvProfileGeneralUsername.setText(result.getUsername());
+                    tvProfileGeneralBirthdate.setText(getString(R.string.birthdate_string) + ": " + result.getBirthdate());
+                    tvProfileGeneralEmail.setText(result.getEmail());
+                    tvProfileGeneralLevel.setText(getString(R.string.level_string) + ": " + result.getLevel());
+                    tvProfileGeneralScore.setText(getString(R.string.score_string) + ": " + result.getScore());
 
                     getRankingPosition();
 
@@ -111,7 +116,7 @@ public class RankingFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
 
                 mainActivity.setLoadingData(false);
                 Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
@@ -119,14 +124,20 @@ public class RankingFragment extends Fragment {
             }
 
         });
+    }
+
+    public void btnBackProfileGeneralClick(android.view.View u) {
+
+        mainActivity.goBack();
 
     }
+
 
     public void getRankingPosition() {
 
         mainActivity.setLoadingData(true);
 
-        Call<RankingPositionResponse> rankingPos = mainActivity.getGameService().getRankingPosition(new GetUserCredentials(mainActivity.getSavedUsername()));
+        Call<RankingPositionResponse> rankingPos = mainActivity.getGameService().getRankingPosition(new GetUserCredentials(username));
 
         rankingPos.enqueue(new Callback<RankingPositionResponse>() {
 
@@ -139,7 +150,7 @@ public class RankingFragment extends Fragment {
 
                     RankingPositionResponse result = response.body();
 
-                    tvYourPositionIs.setText(tvYourPositionIs.getText().toString() + " " + result.getPosition());
+                    tvProfileGeneralRankingPosition.setText(getString(R.string.ranking_position_string) + ": " + result.getPosition());
 
                 } else {
 
@@ -160,11 +171,4 @@ public class RankingFragment extends Fragment {
         });
 
     }
-
-    public void btnBackRankingClick(android.view.View u) {
-
-        mainActivity.goBack();
-
-    }
-
 }

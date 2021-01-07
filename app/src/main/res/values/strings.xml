@@ -21,10 +21,10 @@
     <string name="incorrect_password_string">Incorrect password</string>
     <string name="error_login_string">Error while trying to login</string>
     <string name="user_not_exists_string">There is no user with that name</string>
-    <string name="username_short_long_string">Your username must be between 4 and 20 characters</string>
-    <string name="password_short_long_string">Your password must be between 4 and 20 characters</string>
-    <string name="email_short_long_string">Your email must be between 4 and 30 characters</string>
-    <string name="too_young_string">You are too young to play</string>
+    <string name="username_short_long_string">Your username must be between %1$d and %2$d characters</string>
+    <string name="password_short_long_string">Your password must be between %1$d and %2$d characters</string>
+    <string name="email_short_long_string">Your email must be between %1$d and %2$d characters</string>
+    <string name="too_young_string">You must be at least %1$d years old to play</string>
     <string name="email_string">Email</string>
     <string name="birthdate_string">Birthdate</string>
     <string name="delete_account_string">Delete my account</string>
@@ -47,6 +47,28 @@
     <string name="who_we_are_string">Who we are</string>
     <string name="must_confirm_account_deletion_string">You must confirm that you want to delete your account</string>
     <string name="confirm_account_deletion_string">I confirm I want to permanently delete my account</string>
+    <string name="back_string">Back</string>
+    <string name="please_enter_your_string">Please, enter your:</string>
+    <string name="or_string">or</string>
+    <string name="recover_password_string">Recover password</string>
+    <string name="ranking_string">Ranking</string>
+    <string name="you_sure_delete_account_string">Are you sure you want to permanently delete your account?</string>
+    <string name="delete_account_two_string">Delete account</string>
+    <string name="account_deleted_string">You have deleted your account</string>
+    <string name="write_confirm_new_password">You must confirm your new password</string>
+    <string name="write_new_password_string">You must write a new password</string>
+    <string name="write_current_password_string">You must write your current password</string>
+    <string name="profile_string">Profile</string>
+    <string name="score_string">Score</string>
+    <string name="level_string">Level</string>
+    <string name="ranking_position_string">Ranking position</string>
+    <string name="shop_string">Shop</string>
+    <string name="inventory_string">Inventory</string>
+    <string name="password_changed_string">You have changed your password</string>
+    <string name="either_username_email_string">You must write either a username or an email</string>
+    <string name="your_position_is_string">Your position in the ranking is</string>
+    <string name="email_changed_string">You have changed your email</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

@@ -7,6 +7,18 @@
     android:background="#F6DE95"
     tools:context=".fragments.RegisterFragment">
 
+    <Button
+        android:id="@+id/btnBackRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/back_string"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97" />
+
     <TextView
         android:id="@+id/tvConfirmPasswordRegister"
         android:layout_width="wrap_content"
@@ -58,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintVertical_bias="0.85" />
 
     <EditText
         android:id="@+id/etUsernameRegister"

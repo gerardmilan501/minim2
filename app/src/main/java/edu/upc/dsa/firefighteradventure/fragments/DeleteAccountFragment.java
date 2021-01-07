@@ -1,5 +1,7 @@
 package edu.upc.dsa.firefighteradventure.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +28,8 @@ public class DeleteAccountFragment extends Fragment {
     private CheckBox cbDeleteAccount;
     private EditText etPasswordDeleteAccount;
     private EditText etConfirmPasswordDeleteAccount;
+
+    private Button btnBackDeleteAccount;
 
     public DeleteAccountFragment() {
         // Required empty public constructor
@@ -59,8 +63,10 @@ public class DeleteAccountFragment extends Fragment {
         cbDeleteAccount = view.findViewById(R.id.cbDeleteAccount);
         etPasswordDeleteAccount = view.findViewById(R.id.etPasswordDeleteAccount);
         etConfirmPasswordDeleteAccount = view.findViewById(R.id.etConfirmPasswordDeleteAccount);
+        btnBackDeleteAccount = view.findViewById(R.id.btnBackDeleteAccount);
 
         btnDeleteAccount.setOnClickListener(this::btnDeleteAccountClick);
+        btnBackDeleteAccount.setOnClickListener(this::btnBackDeleteAccountClick);
 
     }
 
@@ -71,19 +77,60 @@ public class DeleteAccountFragment extends Fragment {
             Toast.makeText(getContext(), R.string.must_confirm_account_deletion_string, Toast.LENGTH_SHORT).show();
             return;
 
-        }
+        } else if (etPasswordDeleteAccount.getText().toString().equals("")) {
 
-        if (etPasswordDeleteAccount.getText().equals(etConfirmPasswordDeleteAccount.getText())) {
+            Toast.makeText(getContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
+            return;
+
+        } else if (etConfirmPasswordDeleteAccount.getText().toString().equals("")) {
+
+            Toast.makeText(getContext(), R.string.write_confirm_password_string, Toast.LENGTH_SHORT).show();
+            return;
+
+        } else if (!etPasswordDeleteAccount.getText().toString().equals(etConfirmPasswordDeleteAccount.getText().toString())) {
 
             Toast.makeText(getContext(), R.string.passwords_not_match_string, Toast.LENGTH_SHORT).show();
             return;
 
         }
 
-        mainActivity.setLoadingData(true);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(R.string.you_sure_delete_account_string).setPositiveButton(R.string.no_string, dialogClickListener)
+                .setNegativeButton(R.string.yes_string, dialogClickListener).setTitle(R.string.delete_account_two_string).show();
 
 
-        mainActivity.setLoadingData(false);
+    }
+
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+            switch (which){
+
+                case DialogInterface.BUTTON_POSITIVE:
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+
+                    mainActivity.setLoadingData(true);
+
+
+                    mainActivity.setLoadingData(false);
+
+                    Toast.makeText(getContext(), R.string.account_deleted_string ,Toast.LENGTH_SHORT).show();
+
+                    break;
+
+            }
+
+        }
+
+    };
+
+    public void btnBackDeleteAccountClick(android.view.View u) {
+
+        mainActivity.goBack();
 
     }
 

@@ -12,12 +12,15 @@ import edu.upc.dsa.firefighteradventure.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class ShopFragment extends Fragment {
 
     private View view;
 
     private MainActivity mainActivity;
+
+    private Button btnBackShop;
 
     public ShopFragment() {
         // Required empty public constructor
@@ -47,6 +50,16 @@ public class ShopFragment extends Fragment {
             return;
 
         }
+
+        btnBackShop = view.findViewById(R.id.btnBackShop);
+
+        btnBackShop.setOnClickListener(this::btnBackShopClick);
+
+    }
+
+    public void btnBackShopClick(android.view.View u) {
+
+        mainActivity.goBack();
 
     }
 

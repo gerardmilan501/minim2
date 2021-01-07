@@ -12,11 +12,14 @@ import edu.upc.dsa.firefighteradventure.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class InventoryFragment extends Fragment {
 
     private View view;
     private MainActivity mainActivity;
+
+    private Button btnBackInventory;
 
     public InventoryFragment() {
         // Required empty public constructor
@@ -46,6 +49,16 @@ public class InventoryFragment extends Fragment {
             return;
 
         }
+
+        btnBackInventory = view.findViewById(R.id.btnBackInventory);
+
+        btnBackInventory.setOnClickListener(this::btnBackInventoryClick);
+
+    }
+
+    public void btnBackInventoryClick(android.view.View u) {
+
+        mainActivity.goBack();
 
     }
 

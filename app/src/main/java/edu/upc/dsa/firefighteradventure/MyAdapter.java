@@ -1,10 +1,12 @@
 package edu.upc.dsa.firefighteradventure;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.upc.dsa.firefighteradventure.models.User;
 
@@ -65,18 +67,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final String username = values.get(position).getUsername();
-        final String pwd = values.get(position).getPwd();
+        final int score = values.get(position).getScore();
         final ViewHolder vh = holder;
         holder.txtHeader.setText(username);
-        holder.txtFooter.setText(pwd);
-        holder.txtHeader.setOnClickListener(new View.OnClickListener() {
+        holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                remove(vh.getAdapterPosition());
+
+                Bundle bundle = new Bundle();
+
+                bundle.putString("username", username);
+
+                Navigation.findNavController(v).navigate(R.id.profileGeneralFragment, bundle);
+
             }
         });
 
-        holder.txtFooter.setText("Footer: " + username);
+        int pos = position + 1;
+        holder.txtFooter.setText("Position: " + pos + " - Score: " + score);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

@@ -22,10 +22,10 @@
     <string name="incorrect_password_string">Contraseña incorrecta</string>
     <string name="error_login_string">Se ha producido un error al intentar iniciar sesión</string>
     <string name="user_not_exists_string">No existe un usuario con ese nombre</string>
-    <string name="username_short_long_string">Tu nombre de usuario debe tener entre 4 y 20 caracteres</string>
-    <string name="password_short_long_string">Tu contraseña debe tener entre 4 y 20 caracteres</string>
-    <string name="email_short_long_string">Tu email debe tener entre 4 y 30 caracteres</string>
-    <string name="too_young_string">Eres demasiado joven para jugar</string>
+    <string name="username_short_long_string">Tu nombre de usuario debe tener entre %1$d y %2$d caracteres</string>
+    <string name="password_short_long_string">Tu contraseña debe tener entre %1$d y %2$d caracteres</string>
+    <string name="email_short_long_string">Tu email debe tener entre %1$d y %2$d caracteres</string>
+    <string name="too_young_string">Debes tener al menos %1$d años para poder jugar</string>
     <string name="email_string">Email</string>
     <string name="birthdate_string">Fecha de nacimiento</string>
     <string name="delete_account_string">Darme de baja</string>
@@ -48,5 +48,26 @@
     <string name="who_we_are_string">Quiénes somos</string>
     <string name="must_confirm_account_deletion_string">Debes confirmar que quieres darte de baja</string>
     <string name="confirm_account_deletion_string">Confirmo que quiero borrar permanentemente mi cuenta</string>
+    <string name="back_string">Volver</string>
+    <string name="please_enter_your_string">Por favor, introduce tu:</string>
+    <string name="or_string">o</string>
+    <string name="recover_password_string">Recuperar contraseña</string>
+    <string name="ranking_string">Ranking</string>
+    <string name="you_sure_delete_account_string">¿Estás seguro de que quieres borrar permanentemente tu cuenta?</string>
+    <string name="delete_account_two_string">Borrar cuenta</string>
+    <string name="account_deleted_string">Has borrado tu cuenta</string>
+    <string name="write_confirm_new_password">Debes confirmar tu nueva contraseña</string>
+    <string name="write_new_password_string">Debes escribir una nueva contraseña</string>
+    <string name="write_current_password_string">Debes escribir tu contraseña actual</string>
+    <string name="profile_string">Perfil</string>
+    <string name="score_string">Puntuación</string>
+    <string name="level_string">Nivel</string>
+    <string name="ranking_position_string">Posición en el ranking</string>
+    <string name="shop_string">Tienda</string>
+    <string name="inventory_string">Inventario</string>
+    <string name="password_changed_string">Has cambiado tu contraseña</string>
+    <string name="either_username_email_string">Debes escribir o un nombre de usuario o un email</string>
+    <string name="your_position_is_string">Tu posición en el ranking es la</string>
+    <string name="email_changed_string">Has cambiado tu email</string>
 
 </resources>

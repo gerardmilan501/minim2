@@ -8,15 +8,31 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
+import edu.upc.dsa.firefighteradventure.models.Credentials.ChangeEmailCredentials;
+import edu.upc.dsa.firefighteradventure.models.Credentials.ChangePasswordCredentials;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class ChangeEmailFragment extends Fragment {
 
     private View view;
     private MainActivity mainActivity;
+
+    private Button btnBackChangeEmail;
+    private Button btnChangeEmail;
+
+    private EditText etPasswordChangeEmail;
+    private EditText etNewEmailChangeEmail;
+    private EditText etConfirmNewEmailChangeEmail;
 
     public ChangeEmailFragment() {
         // Required empty public constructor
@@ -46,5 +62,64 @@ public class ChangeEmailFragment extends Fragment {
 
         }
 
+        btnBackChangeEmail = view.findViewById(R.id.btnBackChangeEmail);
+        btnChangeEmail = view.findViewById(R.id.btnChangeEmail);
+        etPasswordChangeEmail = view.findViewById(R.id.etPasswordChangeEmail);
+        etNewEmailChangeEmail = view.findViewById(R.id.etNewEmailChangeEmail);
+        etConfirmNewEmailChangeEmail = view.findViewById(R.id.etConfirmNewEmailChangeEmail);
+
+        btnBackChangeEmail.setOnClickListener(this::btnBackChangeEmailClick);
+        btnChangeEmail.setOnClickListener(this::btnChangeEmailClick);
+
     }
+
+    public void btnChangeEmailClick(android.view.View u) {
+
+        mainActivity.setLoadingData(true);
+
+        Call<ResponseBody> resp = mainActivity.getUserService().changeEmail(new ChangeEmailCredentials(mainActivity.getSavedUsername(), etPasswordChangeEmail.getText().toString(), etNewEmailChangeEmail.getText().toString()));
+
+        resp.enqueue(new Callback<ResponseBody>() {
+
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                mainActivity.setLoadingData(false);
+
+                if (response.code() == 201) {
+
+                    Toast.makeText(getContext(), R.string.email_changed_string, Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    switch (response.code()) {
+
+                        case 603:
+                            Toast.makeText(getContext(), R.string.incorrect_password_string, Toast.LENGTH_SHORT).show();
+                            break;
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                mainActivity.setLoadingData(false);
+                Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
+
+            }
+
+        });
+
+    }
+
+    public void btnBackChangeEmailClick(android.view.View u) {
+
+        mainActivity.goBack();
+
+    }
+
 }

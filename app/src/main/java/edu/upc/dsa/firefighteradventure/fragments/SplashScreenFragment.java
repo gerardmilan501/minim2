@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
 import edu.upc.dsa.firefighteradventure.models.Credentials.LoginCredentials;
+import edu.upc.dsa.firefighteradventure.models.GameParameters;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +39,7 @@ public class SplashScreenFragment extends Fragment {
 
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
@@ -53,6 +55,51 @@ public class SplashScreenFragment extends Fragment {
 
         }
 
+        Call<GameParameters> gameParameters = mainActivity.getUserService().getGameParameters();
+
+        gameParameters.enqueue(new Callback<GameParameters>() {
+
+            @Override
+            public void onResponse(Call<GameParameters> call, Response<GameParameters> response) {
+
+                if (response.code() == 201) {
+
+                    GameParameters result = response.body();
+
+                    mainActivity.setUsername_min_length(result.getUsername_min_length());
+                    mainActivity.setUsername_max_length(result.getUsername_max_length());
+
+                    mainActivity.setEmail_max_length(result.getEmail_max_length());
+                    mainActivity.setEmail_min_length(result.getEmail_min_length());
+
+                    mainActivity.setPassword_max_length(result.getPassword_max_length());
+                    mainActivity.setPassword_min_length(result.getPassword_min_length());
+
+                    mainActivity.setMin_age(result.getMin_age());
+
+                    tryLogin();
+
+                } else {
+
+                    Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<GameParameters> call, Throwable t) {
+
+                Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
+
+            }
+
+        });
+
+    }
+
+    public void tryLogin() {
+
         String username = mainActivity.getSavedUsername();
         String password = mainActivity.getSavedPassword();
 
@@ -62,7 +109,7 @@ public class SplashScreenFragment extends Fragment {
 
         } else {
 
-            Call<ResponseBody> resp = mainActivity.getUsersService().login(new LoginCredentials(username, password));
+            Call<ResponseBody> resp = mainActivity.getUserService().login(new LoginCredentials(username, password));
 
             resp.enqueue(new Callback<ResponseBody>() {
 
@@ -114,7 +161,6 @@ public class SplashScreenFragment extends Fragment {
             });
 
         }
-
     }
 
 }

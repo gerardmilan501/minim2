@@ -17,6 +17,7 @@ import retrofit2.Response;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ public class LoginFragment extends Fragment {
     private View view;
     private EditText etUsernameLogin;
     private EditText etPasswordLogin;
+
+    private Button btnBackLogin;
 
     private MainActivity mainActivity;
 
@@ -62,6 +65,7 @@ public class LoginFragment extends Fragment {
 
         view.findViewById(R.id.btnLogin).setOnClickListener(this::btnLoginClick);
         view.findViewById(R.id.btnGotoForgottenPassword).setOnClickListener(this::btnGotoForgottenPasswordClick);
+        view.findViewById(R.id.btnBackLogin).setOnClickListener(this::btnBackLoginClick);
 
     }
 
@@ -87,7 +91,7 @@ public class LoginFragment extends Fragment {
 
         mainActivity.setLoadingData(true);
 
-        Call<ResponseBody> resp = mainActivity.getUsersService().login(new LoginCredentials(etUsernameLogin.getText().toString(), etPasswordLogin.getText().toString()));
+        Call<ResponseBody> resp = mainActivity.getUserService().login(new LoginCredentials(etUsernameLogin.getText().toString(), etPasswordLogin.getText().toString()));
 
         resp.enqueue(new Callback<ResponseBody>() {
 
@@ -140,6 +144,12 @@ public class LoginFragment extends Fragment {
             }
 
         });
+
+    }
+
+    public void btnBackLoginClick(android.view.View u) {
+
+        mainActivity.goBack();
 
     }
 }

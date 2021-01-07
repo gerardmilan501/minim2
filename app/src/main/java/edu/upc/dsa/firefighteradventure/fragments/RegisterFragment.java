@@ -21,6 +21,7 @@ import retrofit2.Response;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,6 +38,8 @@ public class RegisterFragment extends Fragment {
     private EditText etConfirmPasswordRegister;
     private EditText etEmailRegister;
     private TextView tvBirthdateSelectedRegister;
+
+    private Button btnBackRegister;
 
     private DatePickerDialog.OnDateSetListener mDataSetListener;
 
@@ -88,6 +91,7 @@ public class RegisterFragment extends Fragment {
         tvBirthdateSelectedRegister = view.findViewById(R.id.tvBirthdateSelectedRegister);
 
         view.findViewById(R.id.btnRegister).setOnClickListener(this::btnRegisterClick);
+        view.findViewById(R.id.btnBackRegister).setOnClickListener(this::btnBackRegisterClick);
 
         tvBirthdateSelectedRegister.setOnClickListener(this::tvBirthdateSelectedRegisterClick);
 
@@ -152,7 +156,7 @@ public class RegisterFragment extends Fragment {
 
         mainActivity.setLoadingData(true);
 
-        Call<ResponseBody> resp = mainActivity.getUsersService().register(new RegisterCredentials(etUsernameRegister.getText().toString(), etPasswordRegister.getText().toString(), etEmailRegister.getText().toString(), getBirthdate_year(), getBirthdate_month(), getBirthdate_day()));
+        Call<ResponseBody> resp = mainActivity.getUserService().register(new RegisterCredentials(etUsernameRegister.getText().toString(), etPasswordRegister.getText().toString(), etEmailRegister.getText().toString(), getBirthdate_year(), getBirthdate_month(), getBirthdate_day()));
 
         resp.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -179,16 +183,16 @@ public class RegisterFragment extends Fragment {
                             Toast.makeText(getContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
                             break;
                         case 604:
-                            Toast.makeText(getContext(), R.string.username_short_long_string, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getString(R.string.username_short_long_string, mainActivity.getUsername_min_length(), mainActivity.getUsername_max_length()), Toast.LENGTH_SHORT).show();
                             break;
                         case 605:
-                            Toast.makeText(getContext(), R.string.password_short_long_string, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getString(R.string.password_short_long_string, mainActivity.getPassword_min_length(), mainActivity.getPassword_max_length()), Toast.LENGTH_SHORT).show();
                             break;
                         case 606:
-                            Toast.makeText(getContext(), R.string.email_short_long_string, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getString(R.string.email_short_long_string, mainActivity.getEmail_min_length(), mainActivity.getEmail_max_length()), Toast.LENGTH_SHORT).show();
                             break;
                         case 607:
-                            Toast.makeText(getContext(), R.string.too_young_string, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getString(R.string.too_young_string, mainActivity.getMin_age()), Toast.LENGTH_SHORT).show();
                             break;
                         default:
                             Toast.makeText(getContext(), R.string.error_register_string, Toast.LENGTH_SHORT).show();
@@ -208,6 +212,12 @@ public class RegisterFragment extends Fragment {
 
             }
         });
+
+    }
+
+    public void btnBackRegisterClick(android.view.View u) {
+
+        mainActivity.goBack();
 
     }
 

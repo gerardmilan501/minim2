@@ -1,5 +1,6 @@
 package edu.upc.dsa.firefighteradventure.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import edu.upc.dsa.firefighteradventure.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 public class MainMenuFragment extends Fragment {
@@ -35,6 +37,7 @@ public class MainMenuFragment extends Fragment {
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
@@ -56,6 +59,9 @@ public class MainMenuFragment extends Fragment {
             return;
 
         }
+
+        TextView tvHello = view.findViewById(R.id.tvHello);
+        tvHello.setText(getString(R.string.hello_string) + " " + mainActivity.getSavedUsername() + "!");
 
     }
 

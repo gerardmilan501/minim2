@@ -2,14 +2,7 @@ package edu.upc.dsa.firefighteradventure;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
-import androidx.navigation.NavController;
-import androidx.navigation.NavHost;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,28 +10,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.List;
-
-import edu.upc.dsa.firefighteradventure.models.User;
-import edu.upc.dsa.firefighteradventure.services.UsersService;
+import edu.upc.dsa.firefighteradventure.services.GameService;
+import edu.upc.dsa.firefighteradventure.services.UserService;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -54,7 +36,16 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String api_name = "dsaApp";
 
-    private UsersService usersService;
+    private int username_min_length;
+    private int username_max_length;
+    private int password_min_length;
+    private int password_max_length;
+    private int email_min_length;
+    private int email_max_length;
+    private int min_age;
+
+    private UserService userService;
+    private GameService gameService;
 
     private ProgressBar progressBar;
     private ConstraintLayout clLoading;
@@ -111,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        usersService = retrofit.create(UsersService.class);
+        userService = retrofit.create(UserService.class);
+        gameService = retrofit.create(GameService.class);
 
     }
 
@@ -190,9 +182,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public UsersService getUsersService() {
+    public UserService getUserService() {
 
-        return usersService;
+        return userService;
+
+    }
+
+    public GameService getGameService() {
+
+        return gameService;
 
     }
 
@@ -262,6 +260,62 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean isLoadingData() {
         return loadingData;
+    }
+
+    public int getUsername_min_length() {
+        return username_min_length;
+    }
+
+    public void setUsername_min_length(int username_min_length) {
+        this.username_min_length = username_min_length;
+    }
+
+    public int getUsername_max_length() {
+        return username_max_length;
+    }
+
+    public void setUsername_max_length(int username_max_length) {
+        this.username_max_length = username_max_length;
+    }
+
+    public int getPassword_min_length() {
+        return password_min_length;
+    }
+
+    public void setPassword_min_length(int password_min_length) {
+        this.password_min_length = password_min_length;
+    }
+
+    public int getPassword_max_length() {
+        return password_max_length;
+    }
+
+    public void setPassword_max_length(int password_max_length) {
+        this.password_max_length = password_max_length;
+    }
+
+    public int getEmail_min_length() {
+        return email_min_length;
+    }
+
+    public void setEmail_min_length(int email_min_length) {
+        this.email_min_length = email_min_length;
+    }
+
+    public int getEmail_max_length() {
+        return email_max_length;
+    }
+
+    public void setEmail_max_length(int email_max_length) {
+        this.email_max_length = email_max_length;
+    }
+
+    public int getMin_age() {
+        return min_age;
+    }
+
+    public void setMin_age(int min_age) {
+        this.min_age = min_age;
     }
 }
 

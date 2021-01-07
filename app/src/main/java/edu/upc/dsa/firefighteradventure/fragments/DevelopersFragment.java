@@ -1,5 +1,6 @@
 package edu.upc.dsa.firefighteradventure.fragments;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,12 +13,22 @@ import edu.upc.dsa.firefighteradventure.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 
 public class DevelopersFragment extends Fragment {
 
     private View view;
     private MainActivity mainActivity;
+    private ImageView ivSumaya;
+    private ImageView ivEric;
+    private ImageView ivMeritxell;
+    private ImageView ivSuhail;
+    private ImageView ivLluis;
+    private ImageView ivGerard;
+
+    private Button btnBackDevelopers;
 
     public DevelopersFragment() {
         // Required empty public constructor
@@ -45,5 +56,74 @@ public class DevelopersFragment extends Fragment {
 
         }
 
+        ivSumaya = view.findViewById(R.id.ivSumaya);
+        ivEric = view.findViewById(R.id.ivEric);
+        ivMeritxell = view.findViewById(R.id.ivMeritxell);
+        ivSuhail = view.findViewById(R.id.ivSuhail);
+        ivLluis = view.findViewById(R.id.ivLluis);
+        ivGerard = view.findViewById(R.id.ivGerard);
+
+        btnBackDevelopers = view.findViewById(R.id.btnBackDevelopers);
+
+        ivSumaya.setOnClickListener(this::ivSumayaClick);
+        ivEric.setOnClickListener(this::ivEricClick);
+        ivMeritxell.setOnClickListener(this::ivMeritxellClick);
+        ivSuhail.setOnClickListener(this::ivSuhailClick);
+        ivLluis.setOnClickListener(this::ivLluisClick);
+        ivGerard.setOnClickListener(this::ivGerardClick);
+
+        btnBackDevelopers.setOnClickListener(this::btnBackDevelopersClick);
+
+
+
     }
+
+    public void ivSumayaClick(android.view.View u) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Web developer").setTitle("Sumaya Benali").show();
+
+    }
+
+    public void ivEricClick(android.view.View u) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("BackEnd developer").setTitle("Eric Mata Suñe").show();
+
+    }
+
+    public void ivMeritxellClick(android.view.View u) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("BackEnd developer").setTitle("Meritxell Hermoso").show();
+
+    }
+
+    public void ivSuhailClick(android.view.View u) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Unity Developer").setTitle("Suhail Chaib").show();
+
+    }
+
+    public void ivLluisClick(android.view.View u) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Android developer").setTitle("Lluís Expósito").show();
+
+    }
+
+    public void ivGerardClick(android.view.View u) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Android developer").setTitle("Gerard Milán").show();
+
+    }
+
+    public void btnBackDevelopersClick(android.view.View u) {
+
+        mainActivity.goBack();
+
+    }
+
 }

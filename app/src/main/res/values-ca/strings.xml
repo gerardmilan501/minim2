@@ -22,10 +22,10 @@
     <string name="incorrect_password_string">Contrasenya incorrecta</string>
     <string name="error_login_string">S\'ha produït un error a l\'intentar iniciar sessió</string>
     <string name="user_not_exists_string">No existeix un usuari amb aquest nom</string>
-    <string name="username_short_long_string">El teu nom d\'usuari ha de tenir entre 4 i 20 caràcters</string>
-    <string name="password_short_long_string">La teva contrasenya ha de tenir entre 4 i 20 caràcters</string>
-    <string name="email_short_long_string">El teu email ha de tenir entre 4 i 20 caràcters</string>
-    <string name="too_young_string">Ets massa jove per jugar</string>
+    <string name="username_short_long_string">El teu nom d\'usuari ha de tenir entre %1$d i %2$d caràcters</string>
+    <string name="password_short_long_string">La teva contrasenya ha de tenir entre %1$d i %2$d caràcters</string>
+    <string name="email_short_long_string">El teu email ha de tenir entre %1$d i %2$d caràcters</string>
+    <string name="too_young_string">Has de tenir almenys %1$d anys per poder jugar</string>
     <string name="email_string">Email</string>
     <string name="birthdate_string">Data de naixement</string>
     <string name="delete_account_string">Donar-me de baixa</string>
@@ -48,5 +48,26 @@
     <string name="who_we_are_string">Qui som</string>
     <string name="must_confirm_account_deletion_string">Has de confirmar que vols donar-te de baixa</string>
     <string name="confirm_account_deletion_string">Confirmo que vull esborrar permanentment el meu compte</string>
+    <string name="back_string">Tornar</string>
+    <string name="please_enter_your_string">Siusplau, introdueix el teu:</string>
+    <string name="or_string">o</string>
+    <string name="recover_password_string">Recuperar contrasenya</string>
+    <string name="ranking_string">Ranking</string>
+    <string name="you_sure_delete_account_string">Estàs segur de que vols esborrar el teu compte permanentment?</string>
+    <string name="delete_account_two_string">Eliminar compte</string>
+    <string name="account_deleted_string">Has eliminar el teu compte</string>
+    <string name="write_confirm_new_password">Has de confirmar la teva nova contrasenya</string>
+    <string name="write_new_password_string">Has d\'escriure una nova contrasenya</string>
+    <string name="write_current_password_string">Has d\'escriure la teva contrasenya actual</string>
+    <string name="profile_string">Perfil</string>
+    <string name="score_string">Puntuació</string>
+    <string name="level_string">Nivell</string>
+    <string name="ranking_position_string">Posició al ranking</string>
+    <string name="shop_string">Botiga</string>
+    <string name="inventory_string">Inventari</string>
+    <string name="password_changed_string">Has canviat la teva contrasenya</string>
+    <string name="either_username_email_string">Has d\'escriure o un nom d\'usuari o un email</string>
+    <string name="your_position_is_string">La teva posició al ranking és la</string>
+    <string name="email_changed_string">Has canviat el teu email</string>
 
 </resources>

@@ -8,14 +8,16 @@ public class User {
     private String email;
     private String birthdate;
     private int score;
+    private int level;
 
-    public User(String id, String username, String pwd, String email, String birthdate, int score) {
+    public User(String id, String username, String pwd, String email, String birthdate) {
         this.id = id;
         this.username = username;
         this.pwd = pwd;
         this.email = email;
         this.birthdate = birthdate;
-        this.score = score;
+        setScore(0);
+        setLevel(1);
     }
 
     public void setId(String id) {
@@ -66,4 +68,11 @@ public class User {
         this.score = score;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }
