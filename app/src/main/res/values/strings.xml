@@ -68,6 +68,8 @@
     <string name="either_username_email_string">You must write either a username or an email</string>
     <string name="your_position_is_string">Your position in the ranking is</string>
     <string name="email_changed_string">You have changed your email</string>
+    <string name="play_string">Play</string>
+    <string name="configuration_string">Configuration</string>
     <!-- TODO: Remove or change this placeholder text -->
     <!-- TODO: Remove or change this placeholder text -->
 

@@ -69,5 +69,7 @@
     <string name="either_username_email_string">Debes escribir o un nombre de usuario o un email</string>
     <string name="your_position_is_string">Tu posición en el ranking es la</string>
     <string name="email_changed_string">Has cambiado tu email</string>
+    <string name="play_string">Jugar</string>
+    <string name="configuration_string">Configuración</string>
 
 </resources>
