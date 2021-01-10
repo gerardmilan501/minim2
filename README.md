@@ -1,9 +1,6 @@
 
 
-App:
--> Pulir un poco más todo el tema de la API
--> Fotos de perfil para los usuarios
--> Añadir opción de borrar usuario (darse de baja)         
+App:    
 -> Obligar a que las contraseñas introducidas tengan un cierto formato (por ejemplo mínimo 1 mayúscula y 1 minúscula, 1 carácter especial, 1 número...)
 -> Si se añade el campo "email" al register o al login, añadir un sistema mediante el cual se compruebe que el formato del email introducido es el correcto (básicamente para que no se pueda escribir algo que no sea un email)
 -> Vista de admin
