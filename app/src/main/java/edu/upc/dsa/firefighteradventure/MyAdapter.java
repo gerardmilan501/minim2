@@ -75,9 +75,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             public void onClick(View v) {
 
                 Bundle bundle = new Bundle();
-
                 bundle.putString("username", username);
-
                 Navigation.findNavController(v).navigate(R.id.profileGeneralFragment, bundle);
 
             }

@@ -113,21 +113,35 @@ public class ChangePasswordFragment extends Fragment {
 
                 mainActivity.setLoadingData(false);
 
-                if (response.code() == 201) {
+                switch (response.code()) {
 
-                    Toast.makeText(getContext(), R.string.password_changed_string, Toast.LENGTH_SHORT).show();
+                    case 201:
+                        Toast.makeText(getContext(), R.string.password_changed_string, Toast.LENGTH_SHORT).show();
+                        mainActivity.setSavedPassword(etNewPasswordChangePassword.getText().toString());
+                        break;
+                    case 404:
+                        Toast.makeText(getContext(), R.string.user_not_exists_string, Toast.LENGTH_SHORT).show();
+                        break;
 
-                    mainActivity.setSavedPassword(etNewPasswordChangePassword.getText().toString());
+                    case 601:
+                        Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
+                        break;
 
-                } else {
+                    case 602:
+                        Toast.makeText(getContext(), R.string.write_current_password_string, Toast.LENGTH_SHORT).show();
+                        break;
 
-                    switch (response.code()) {
+                    case 603:
+                        Toast.makeText(getContext(), R.string.incorrect_password_string, Toast.LENGTH_SHORT).show();
+                        break;
 
-                        case 603:
-                            Toast.makeText(getContext(), R.string.incorrect_password_string, Toast.LENGTH_SHORT).show();
-                            break;
+                    case 604:
+                        Toast.makeText(getContext(), R.string.write_new_password_string, Toast.LENGTH_SHORT).show();
+                        break;
 
-                    }
+                    default:
+                        Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
+                        break;
 
                 }
 

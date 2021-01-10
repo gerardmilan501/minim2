@@ -8,6 +8,18 @@
     tools:context=".fragments.LoginRegisterFragment">
 
     <Button
+        android:id="@+id/btnGotoConfigurationLoginRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/configuration_string"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/btnGotoRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

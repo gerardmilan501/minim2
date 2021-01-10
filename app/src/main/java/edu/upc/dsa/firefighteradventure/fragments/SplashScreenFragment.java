@@ -9,7 +9,7 @@ import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
 import edu.upc.dsa.firefighteradventure.models.Credentials.LoginCredentials;
-import edu.upc.dsa.firefighteradventure.models.GameParameters;
+import edu.upc.dsa.firefighteradventure.models.UserCredentialsParameters;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,16 +55,16 @@ public class SplashScreenFragment extends Fragment {
 
         }
 
-        Call<GameParameters> gameParameters = mainActivity.getUserService().getGameParameters();
+        Call<UserCredentialsParameters> gameParameters = mainActivity.getUserService().getGameParameters();
 
-        gameParameters.enqueue(new Callback<GameParameters>() {
+        gameParameters.enqueue(new Callback<UserCredentialsParameters>() {
 
             @Override
-            public void onResponse(Call<GameParameters> call, Response<GameParameters> response) {
+            public void onResponse(Call<UserCredentialsParameters> call, Response<UserCredentialsParameters> response) {
 
                 if (response.code() == 201) {
 
-                    GameParameters result = response.body();
+                    UserCredentialsParameters result = response.body();
 
                     mainActivity.setUsername_min_length(result.getUsername_min_length());
                     mainActivity.setUsername_max_length(result.getUsername_max_length());
@@ -88,7 +88,7 @@ public class SplashScreenFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<GameParameters> call, Throwable t) {
+            public void onFailure(Call<UserCredentialsParameters> call, Throwable t) {
 
                 Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
 

@@ -48,7 +48,7 @@
     <string name="who_we_are_string">Quiénes somos</string>
     <string name="must_confirm_account_deletion_string">Debes confirmar que quieres darte de baja</string>
     <string name="confirm_account_deletion_string">Confirmo que quiero borrar permanentemente mi cuenta</string>
-    <string name="back_string">Volver</string>
+    <string name="back_string">⬅️ Volver</string>
     <string name="please_enter_your_string">Por favor, introduce tu:</string>
     <string name="or_string">o</string>
     <string name="recover_password_string">Recuperar contraseña</string>
@@ -69,5 +69,35 @@
     <string name="either_username_email_string">Debes escribir o un nombre de usuario o un email</string>
     <string name="your_position_is_string">Tu posición en el ranking es la</string>
     <string name="email_changed_string">Has cambiado tu email</string>
+    <string name="play_string">Jugar</string>
+    <string name="configuration_string">⚙ Configuración</string>
+    <string name="sumaya_string">Sumaya Benali</string>
+    <string name="suhail_string">Suhail Chaib</string>
+    <string name="meritxell_string">Meritxell Hermoso</string>
+    <string name="gerard_string">Gerard Milán</string>
+    <string name="lluis_string">Lluís Expósito</string>
+    <string name="eric_string">Eric Mata</string>
+    <string name="language_string">🗣 Idioma</string>
+    <string name="choose_app_language_string">Escoger el idioma de la App</string>
+
+    <string-array name="app_language">
+        <item>Inglés</item>
+        <item>Catalán</item>
+        <item>Castellano</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>en</item>
+        <item>ca</item>
+        <item>es</item>
+    </string-array>
+
+    <string name="choose_a_language_string">️️‍️‍🗨 Escoge un idioma</string>
+    <string name="selected_language_string">Idioma seleccionado:</string>
+    <string name="logged_out_string">Has cerrado sesión</string>
+    <string name="search_user_string">Buscar un usuario</string>
+    <string name="write_new_email_string">Debes escribir un nuevo email</string>
+    <string name="emails_do_not_match_string">Los emails no coinciden</string>
+    <string name="write_confirm_new_email">Debes confirmar tu nuevo email</string>
 
 </resources>

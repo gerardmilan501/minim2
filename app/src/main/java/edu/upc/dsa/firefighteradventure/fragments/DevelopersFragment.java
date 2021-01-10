@@ -81,42 +81,42 @@ public class DevelopersFragment extends Fragment {
     public void ivSumayaClick(android.view.View u) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Web developer").setTitle("Sumaya Benali").show();
+        builder.setMessage("Web developer").setTitle(R.string.sumaya_string).show();
 
     }
 
     public void ivEricClick(android.view.View u) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("BackEnd developer").setTitle("Eric Mata Suñe").show();
+        builder.setMessage("BackEnd developer").setTitle(R.string.eric_string).show();
 
     }
 
     public void ivMeritxellClick(android.view.View u) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("BackEnd developer").setTitle("Meritxell Hermoso").show();
+        builder.setMessage("BackEnd developer").setTitle(R.string.meritxell_string).show();
 
     }
 
     public void ivSuhailClick(android.view.View u) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Unity Developer").setTitle("Suhail Chaib").show();
+        builder.setMessage("Unity Developer").setTitle(R.string.suhail_string).show();
 
     }
 
     public void ivLluisClick(android.view.View u) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Android developer").setTitle("Lluís Expósito").show();
+        builder.setMessage("Android developer").setTitle(R.string.lluis_string).show();
 
     }
 
     public void ivGerardClick(android.view.View u) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Android developer").setTitle("Gerard Milán").show();
+        builder.setMessage("Android developer").setTitle(R.string.gerard_string).show();
 
     }
 

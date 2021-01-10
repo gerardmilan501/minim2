@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 
 public class MainMenuFragment extends Fragment {
 
@@ -49,6 +51,7 @@ public class MainMenuFragment extends Fragment {
         view.findViewById(R.id.btnGotoShop).setOnClickListener(this::btnGotoShopClick);
         view.findViewById(R.id.btnLogout).setOnClickListener(this::btnLogoutClick);
         view.findViewById(R.id.btnGotoRanking).setOnClickListener(this::btnGotoRankingClick);
+        view.findViewById(R.id.btnGotoConfigurationMainMenu).setOnClickListener(this::btnGotoConfigurationMainMenuClick);
 
         mainActivity = (MainActivity) getActivity();
         mainActivity.setBackActivated(false);
@@ -109,6 +112,9 @@ public class MainMenuFragment extends Fragment {
 
                 case DialogInterface.BUTTON_NEGATIVE:
 
+                    Snackbar.make(view, R.string.logged_out_string, Snackbar.LENGTH_SHORT)
+                            .show();
+
                     mainActivity.setSavedUsername("");
                     mainActivity.setSavedPassword("");
 
@@ -127,6 +133,12 @@ public class MainMenuFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage(R.string.confirm_logout_string).setPositiveButton(R.string.no_string, dialogClickListener)
                 .setNegativeButton(R.string.yes_string, dialogClickListener).setTitle(R.string.logout_string).show();
+
+    }
+
+    public void btnGotoConfigurationMainMenuClick(android.view.View u) {
+
+        Navigation.findNavController(view).navigate(R.id.configurationFragment);
 
     }
 

@@ -75,6 +75,28 @@ public class ChangeEmailFragment extends Fragment {
 
     public void btnChangeEmailClick(android.view.View u) {
 
+        if (etPasswordChangeEmail.getText().toString().equals("")) {
+
+            Toast.makeText(getContext(), R.string.write_current_password_string, Toast.LENGTH_SHORT).show();
+            return;
+
+        } else if (etNewEmailChangeEmail.getText().toString().equals("")) {
+
+            Toast.makeText(getContext(), R.string.write_new_email_string, Toast.LENGTH_SHORT).show();
+            return;
+
+        } else if (etConfirmNewEmailChangeEmail.getText().toString().equals("")) {
+
+            Toast.makeText(getContext(), R.string.write_confirm_new_email, Toast.LENGTH_SHORT).show();
+            return;
+
+        } else if (!etNewEmailChangeEmail.getText().toString().equals(etConfirmNewEmailChangeEmail.getText().toString())) {
+
+            Toast.makeText(getContext(), R.string.emails_do_not_match_string, Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+
         mainActivity.setLoadingData(true);
 
         Call<ResponseBody> resp = mainActivity.getUserService().changeEmail(new ChangeEmailCredentials(mainActivity.getSavedUsername(), etPasswordChangeEmail.getText().toString(), etNewEmailChangeEmail.getText().toString()));
@@ -86,21 +108,38 @@ public class ChangeEmailFragment extends Fragment {
 
                 mainActivity.setLoadingData(false);
 
-                if (response.code() == 201) {
+                switch (response.code()) {
 
-                    Toast.makeText(getContext(), R.string.email_changed_string, Toast.LENGTH_SHORT).show();
+                    case 201:
+                        Toast.makeText(getContext(), R.string.email_changed_string, Toast.LENGTH_SHORT).show();
+                        break;
 
-                } else {
+                    case 601:
+                        Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
+                        break;
 
-                    switch (response.code()) {
+                    case 602:
+                        Toast.makeText(getContext(), R.string.write_current_password_string, Toast.LENGTH_SHORT).show();
+                        break;
 
-                        case 603:
-                            Toast.makeText(getContext(), R.string.incorrect_password_string, Toast.LENGTH_SHORT).show();
-                            break;
+                    case 603:
+                        Toast.makeText(getContext(), R.string.incorrect_password_string, Toast.LENGTH_SHORT).show();
+                        break;
 
-                    }
+                    case 604:
+                        Toast.makeText(getContext(), R.string.write_new_email_string, Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case 404:
+                        Toast.makeText(getContext(), R.string.user_not_exists_string, Toast.LENGTH_SHORT).show();
+                        break;
+
+                    default:
+                        Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
+                        break;
 
                 }
+
 
             }
 

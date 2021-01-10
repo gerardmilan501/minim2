@@ -48,7 +48,7 @@
     <string name="who_we_are_string">Qui som</string>
     <string name="must_confirm_account_deletion_string">Has de confirmar que vols donar-te de baixa</string>
     <string name="confirm_account_deletion_string">Confirmo que vull esborrar permanentment el meu compte</string>
-    <string name="back_string">Tornar</string>
+    <string name="back_string">⬅️ Tornar</string>
     <string name="please_enter_your_string">Siusplau, introdueix el teu:</string>
     <string name="or_string">o</string>
     <string name="recover_password_string">Recuperar contrasenya</string>
@@ -69,5 +69,35 @@
     <string name="either_username_email_string">Has d\'escriure o un nom d\'usuari o un email</string>
     <string name="your_position_is_string">La teva posició al ranking és la</string>
     <string name="email_changed_string">Has canviat el teu email</string>
+    <string name="play_string">Jugar</string>
+    <string name="configuration_string">⚙ Configuració</string>
+    <string name="sumaya_string">Sumaya Benali</string>
+    <string name="suhail_string">Suhail Chaib</string>
+    <string name="meritxell_string">Meritxell Hermoso</string>
+    <string name="gerard_string">Gerard Milán</string>
+    <string name="lluis_string">Lluís Expósito</string>
+    <string name="eric_string">Eric Mata</string>
+    <string name="language_string">🗣 Idioma</string>
+    <string name="choose_app_language_string">️Escollir l\'idioma de l\'app</string>
+
+    <string-array name="app_language">
+        <item>Anglès</item>
+        <item>Català</item>
+        <item>Castellà</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>en</item>
+        <item>ca</item>
+        <item>es</item>
+    </string-array>
+
+    <string name="choose_a_language_string">️‍🗨️ ️Escolleix un idioma</string>
+    <string name="selected_language_string">Idioma seleccionat:</string>
+    <string name="logged_out_string">Has tancat la sessió</string>
+    <string name="search_user_string">Buscar un usuari</string>
+    <string name="write_new_email_string">Has d\'escriure un nou email</string>
+    <string name="emails_do_not_match_string">Els emails no coincideixen</string>
+    <string name="write_confirm_new_email">Has de confirmar el teu nou email</string>
 
 </resources>

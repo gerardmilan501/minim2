@@ -8,8 +8,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,6 +22,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import java.util.Locale;
+
+import androidx.preference.PreferenceManager;
 import edu.upc.dsa.firefighteradventure.services.GameService;
 import edu.upc.dsa.firefighteradventure.services.UserService;
 import okhttp3.OkHttpClient;
@@ -64,6 +72,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (getChooseAppLanguage()) {
+
+            Locale locale = new Locale(getSavedLanguage());
+            setLocale(locale);
+
+        } else {
+
+            setLocale(new Locale(Locale.getDefault().getDisplayLanguage()));
+
+        }
+
         progressBar = findViewById(R.id.progressBar);
         clLoading = findViewById(R.id.clLoading);
 
@@ -71,6 +90,17 @@ public class MainActivity extends AppCompatActivity {
 
         setBackActivated(false);
         startServices();
+
+    }
+
+    public void setLocale(Locale locale) {
+
+        Locale.setDefault(locale);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = locale;
+        res.updateConfiguration(conf, dm);
 
     }
 
@@ -150,23 +180,56 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public String getSavedLanguage() {
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        return prefs.getString("savedLanguage", Locale.getDefault().getDisplayLanguage());
+
+    }
+
+    public void setSavedLanguage(String language) {
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("savedLanguage", language);
+        editor.apply();
+
+    }
+
+    public boolean getChooseAppLanguage() {
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        return prefs.getBoolean("chooseAppLanguage", true);
+
+    }
+
+    public void setChooseAppLanguage(boolean useAndroidSystemLanguage) {
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("chooseAppLanguage", useAndroidSystemLanguage);
+        editor.apply();
+
+    }
+
     public String getSavedUsername() {
 
-        SharedPreferences prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         return prefs.getString("username", "");
 
     }
 
     public String getSavedPassword() {
 
-        SharedPreferences prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         return prefs.getString("password", "");
 
     }
 
+
     public void setSavedUsername(String username) {
 
-        SharedPreferences prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("username", username);
         editor.apply();
@@ -175,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setSavedPassword(String password) {
 
-        SharedPreferences prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("password", password);
         editor.apply();
@@ -198,6 +261,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (loadingData) {
 
+            this.loadingData = true;
+
             progressBar.setProgress(0);
             clLoading.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.VISIBLE);
@@ -210,6 +275,8 @@ public class MainActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
             clLoading.setVisibility(View.GONE);
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+            this.loadingData = false;
 
         }
 
@@ -249,6 +316,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public InputFilter spaceFilter = new InputFilter() {
+        public CharSequence filter(CharSequence source, int start, int end,
+                                   Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                if (Character.isWhitespace(source.charAt(i))) {
+                    return "";
+                }
+            }
+            return null;
+        }
+    };
 
     public boolean isBackActivated() {
         return backActivated;

@@ -50,6 +50,7 @@ public class LoginRegisterFragment extends Fragment {
         view.findViewById(R.id.btnGotoLogin).setOnClickListener(this::btnGotoLoginClick);
         view.findViewById(R.id.btnGotoRegister).setOnClickListener(this::btnGotoRegisterClick);
         view.findViewById(R.id.btnGotoDevelopers).setOnClickListener(this::btnGotoDevelopersClick);
+        view.findViewById(R.id.btnGotoConfigurationLoginRegister).setOnClickListener(this::btnGotoConfigurationLoginRegisterClick);
 
     }
 
@@ -68,6 +69,12 @@ public class LoginRegisterFragment extends Fragment {
     public void btnGotoDevelopersClick(android.view.View u) {
 
         Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_developersFragment);
+
+    }
+
+    public void btnGotoConfigurationLoginRegisterClick(android.view.View u) {
+
+        Navigation.findNavController(view).navigate(R.id.configurationFragment);
 
     }
 
