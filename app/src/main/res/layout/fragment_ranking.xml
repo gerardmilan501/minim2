@@ -7,6 +7,22 @@
     android:background="#F6DE95"
     tools:context=".fragments.RankingFragment">
 
+    <EditText
+        android:id="@+id/etSearchUsernameRanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/textbox"
+        android:backgroundTint="@color/colorPrimary"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890._-"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textFilter"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnSearchUsernameRanking"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_recycler_view" />
+
     <Button
         android:id="@+id/btnBackRanking"
         android:layout_width="wrap_content"
@@ -49,13 +65,35 @@
         android:id="@+id/tvYourPositionIs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:text="@string/your_position_is_string"
         android:textColor="@android:color/background_dark"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnBackRanking"
         app:layout_constraintEnd_toEndOf="@+id/my_recycler_view"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="@+id/my_recycler_view"
+        app:layout_constraintTop_toBottomOf="@+id/etSearchUsernameRanking" />
+
+    <Button
+        android:id="@+id/btnSearchUsernameRanking"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="22dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="🔎"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etSearchUsernameRanking"
         app:layout_constraintTop_toBottomOf="@+id/my_recycler_view" />
+
+    <TextView
+        android:id="@+id/tvSearchUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_user_string"
+        android:textColor="@android:color/background_dark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/etSearchUsernameRanking"
+        app:layout_constraintStart_toStartOf="@+id/etSearchUsernameRanking" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

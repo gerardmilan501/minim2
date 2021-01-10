@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
-import edu.upc.dsa.firefighteradventure.models.Credentials.GetUserCredentials;
+import edu.upc.dsa.firefighteradventure.models.ProfileResponse;
 import edu.upc.dsa.firefighteradventure.models.RankingPositionResponse;
 import edu.upc.dsa.firefighteradventure.models.User;
 import retrofit2.Call;
@@ -19,7 +19,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProfileFragment extends Fragment {
 
@@ -36,6 +38,7 @@ public class ProfileFragment extends Fragment {
     private TextView tvProfileLevel;
     private TextView tvProfileScore;
     private TextView tvProfileRankingPosition;
+    private ImageView ivProfilePhoto;
 
     private MainActivity mainActivity;
 
@@ -85,39 +88,60 @@ public class ProfileFragment extends Fragment {
         tvProfileScore = view.findViewById(R.id.tvProfileScore);
         tvProfileRankingPosition = view.findViewById(R.id.tvProfileRankingPosition);
 
+        ivProfilePhoto = view.findViewById(R.id.ivProfilePhoto);
+
+        ivProfilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("image", R.drawable.profile);
+                Navigation.findNavController(view).navigate(R.id.imageViewFragment, bundle);
+            }
+        });
+
         mainActivity.setLoadingData(true);
 
-        Call<User> user = mainActivity.getUserService().getUserByUsername(new GetUserCredentials(mainActivity.getSavedUsername()));
+        Call<ProfileResponse> user = mainActivity.getUserService().getUserByUsername(mainActivity.getSavedUsername());
 
-        user.enqueue(new Callback<User>() {
+        user.enqueue(new Callback<ProfileResponse>() {
 
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
 
                 mainActivity.setLoadingData(false);
 
-                if (response.code() == 200) {
+                switch (response.code()) {
 
-                    User result = response.body();
+                    case 200:
+                        ProfileResponse result = response.body();
 
-                    tvProfileUsername.setText(result.getUsername());
-                    tvProfileBirthdate.setText(getString(R.string.birthdate_string) + ": " + result.getBirthdate());
-                    tvProfileEmail.setText(result.getEmail());
-                    tvProfileLevel.setText(getString(R.string.level_string) + ": " + result.getLevel());
-                    tvProfileScore.setText(getString(R.string.score_string) + ": " + result.getScore());
+                        tvProfileUsername.setText(result.getUsername());
+                        tvProfileBirthdate.setText(getString(R.string.birthdate_string) + ": " + result.getBirthdate());
+                        tvProfileEmail.setText(result.getEmail());
+                        tvProfileLevel.setText(getString(R.string.level_string) + ": " + result.getLevel());
+                        tvProfileScore.setText(getString(R.string.score_string) + ": " + result.getScore());
+                        tvProfileRankingPosition.setText(getString(R.string.ranking_position_string) + ": " + result.getRanking_position());
 
-                    getRankingPosition();
+                        break;
 
-                } else {
+                    case 404:
+                        Toast.makeText(getContext(), R.string.user_not_exists_string, Toast.LENGTH_SHORT).show();
+                        break;
 
-                    Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
+                    case 601:
+                        Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
+                        break;
+
+                    default:
+                        Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
+                        break;
 
                 }
 
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
 
                 mainActivity.setLoadingData(false);
                 Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
@@ -149,45 +173,6 @@ public class ProfileFragment extends Fragment {
     public void btnBackProfileClick(android.view.View u) {
 
         mainActivity.goBack();
-
-    }
-
-    public void getRankingPosition() {
-
-        mainActivity.setLoadingData(true);
-
-        Call<RankingPositionResponse> rankingPos = mainActivity.getGameService().getRankingPosition(new GetUserCredentials(mainActivity.getSavedUsername()));
-
-        rankingPos.enqueue(new Callback<RankingPositionResponse>() {
-
-            @Override
-            public void onResponse(Call<RankingPositionResponse> call, Response<RankingPositionResponse> response) {
-
-                mainActivity.setLoadingData(false);
-
-                if (response.code() == 201) {
-
-                    RankingPositionResponse result = response.body();
-
-                    tvProfileRankingPosition.setText(getString(R.string.ranking_position_string) + ": " + result.getPosition());
-
-                } else {
-
-                    Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<RankingPositionResponse> call, Throwable t) {
-
-                mainActivity.setLoadingData(false);
-                Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
-
-            }
-
-        });
 
     }
 

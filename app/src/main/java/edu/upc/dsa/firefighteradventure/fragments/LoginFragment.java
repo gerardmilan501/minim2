@@ -14,12 +14,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class LoginFragment extends Fragment {
 
@@ -63,6 +67,10 @@ public class LoginFragment extends Fragment {
         etUsernameLogin = view.findViewById(R.id.etUsernameLogin);
         etPasswordLogin = view.findViewById(R.id.etPasswordLogin);
 
+        etUsernameLogin.setFilters(new InputFilter[] { mainActivity.spaceFilter });
+        etPasswordLogin.setFilters(new InputFilter[] { mainActivity.spaceFilter });
+
+
         view.findViewById(R.id.btnLogin).setOnClickListener(this::btnLoginClick);
         view.findViewById(R.id.btnGotoForgottenPassword).setOnClickListener(this::btnGotoForgottenPasswordClick);
         view.findViewById(R.id.btnBackLogin).setOnClickListener(this::btnBackLoginClick);
@@ -102,7 +110,8 @@ public class LoginFragment extends Fragment {
 
                 if (response.code() == 201) {
 
-                    Toast.makeText(getContext(), R.string.login_succesful_string, Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, R.string.login_succesful_string, Snackbar.LENGTH_SHORT)
+                            .show();
 
                     mainActivity.setSavedUsername(etUsernameLogin.getText().toString());
                     mainActivity.setSavedPassword(etPasswordLogin.getText().toString());

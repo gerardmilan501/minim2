@@ -18,6 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,6 +89,12 @@ public class RegisterFragment extends Fragment {
         etPasswordRegister = view.findViewById(R.id.etPasswordRegister);
         etConfirmPasswordRegister = view.findViewById(R.id.etConfirmPasswordRegister);
         etEmailRegister = view.findViewById(R.id.etEmailRegister);
+
+        etUsernameRegister.setFilters(new InputFilter[] { mainActivity.spaceFilter });
+        etPasswordRegister.setFilters(new InputFilter[] { mainActivity.spaceFilter });
+        etConfirmPasswordRegister.setFilters(new InputFilter[] { mainActivity.spaceFilter });
+        etEmailRegister.setFilters(new InputFilter[] { mainActivity.spaceFilter });
+
         tvBirthdateSelectedRegister = view.findViewById(R.id.tvBirthdateSelectedRegister);
 
         view.findViewById(R.id.btnRegister).setOnClickListener(this::btnRegisterClick);
