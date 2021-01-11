@@ -19,40 +19,12 @@ import retrofit2.http.Path;
 //prueba nuevo repositorio
 public interface UserService {
 
-    @GET("user/getAllUsers")
-    Call<List<ProfileResponse>> getAllUsers();
 
-    @POST("user/register")
-    Call<ResponseBody> register(
-            @Body RegisterCredentials registerCredentials
-    );
 
-    @POST("user/login")
-    Call<ResponseBody> login(
-            @Body LoginCredentials loginCredentials
-    );
-
-    @GET("user/userExists/{username}")
-    Call<ResponseBody> userExists(
+    @GET("users/{username}")
+    Call<UserCredentialsParameters> getUsuari(
             @Path("username") String username
     );
 
-    @POST("user/changePassword")
-    Call<ResponseBody> changePassword(
-            @Body ChangePasswordCredentials changePasswordCredentials
-    );
-
-    @POST("user/changeEmail")
-    Call<ResponseBody> changeEmail(
-            @Body ChangeEmailCredentials changeEmailCredentials
-    );
-
-    @GET("user/getUserCredentialsParameters")
-    Call<UserCredentialsParameters> getGameParameters();
-
-    @GET("user/getUserByUsername/{username}")
-    Call<ProfileResponse> getUserByUsername(
-            @Path("username") String username
-    );
 
 }

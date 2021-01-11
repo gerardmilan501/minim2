@@ -3,11 +3,11 @@ package edu.upc.dsa.firefighteradventure.models.Credentials;
 public class LoginCredentials {
 
     private String username;
-    private String password;
 
-    public LoginCredentials(String username, String password) {
+
+    public LoginCredentials(String username) {
         this.username = username;
-        this.password = password;
+
     }
 
     public String getUsername() {
@@ -18,12 +18,5 @@ public class LoginCredentials {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
 }

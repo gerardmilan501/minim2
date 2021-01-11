@@ -25,7 +25,7 @@ import android.widget.ProgressBar;
 import java.util.Locale;
 
 import androidx.preference.PreferenceManager;
-import edu.upc.dsa.firefighteradventure.services.GameService;
+
 import edu.upc.dsa.firefighteradventure.services.UserService;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -34,26 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final boolean remote_machine = true;
 
-    private static final String remote_ip = "147.83.7.207";
-    private static final int remote_port = 8080;
-
-    private static final String local_ip = "10.0.2.2";
-    private static final int local_port = 8080;
-
-    private static final String api_name = "dsaApp";
-
-    private int username_min_length;
-    private int username_max_length;
-    private int password_min_length;
-    private int password_max_length;
-    private int email_min_length;
-    private int email_max_length;
-    private int min_age;
 
     private UserService userService;
-    private GameService gameService;
+
 
     private ProgressBar progressBar;
     private ConstraintLayout clLoading;
@@ -115,25 +99,18 @@ public class MainActivity extends AppCompatActivity {
 
         Retrofit retrofit;
 
-        if (remote_machine) {
 
-            retrofit = new Retrofit.Builder()
-                    .baseUrl("http://" + remote_ip + ":" + remote_port + "/" + api_name + "/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(okHttpClient)
-                    .build();
-        } else {
 
-            retrofit = new Retrofit.Builder()
-                    .baseUrl("http://" + local_ip + ":" + local_port + "/" + api_name + "/")
+        retrofit = new Retrofit.Builder()
+                    .baseUrl("https://api.github.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build();
 
-        }
+
 
         userService = retrofit.create(UserService.class);
-        gameService = retrofit.create(GameService.class);
+
 
     }
 
@@ -251,11 +228,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public GameService getGameService() {
 
-        return gameService;
-
-    }
 
     public void setLoadingData(boolean loadingData) {
 
@@ -341,60 +314,6 @@ public class MainActivity extends AppCompatActivity {
         return loadingData;
     }
 
-    public int getUsername_min_length() {
-        return username_min_length;
-    }
 
-    public void setUsername_min_length(int username_min_length) {
-        this.username_min_length = username_min_length;
-    }
-
-    public int getUsername_max_length() {
-        return username_max_length;
-    }
-
-    public void setUsername_max_length(int username_max_length) {
-        this.username_max_length = username_max_length;
-    }
-
-    public int getPassword_min_length() {
-        return password_min_length;
-    }
-
-    public void setPassword_min_length(int password_min_length) {
-        this.password_min_length = password_min_length;
-    }
-
-    public int getPassword_max_length() {
-        return password_max_length;
-    }
-
-    public void setPassword_max_length(int password_max_length) {
-        this.password_max_length = password_max_length;
-    }
-
-    public int getEmail_min_length() {
-        return email_min_length;
-    }
-
-    public void setEmail_min_length(int email_min_length) {
-        this.email_min_length = email_min_length;
-    }
-
-    public int getEmail_max_length() {
-        return email_max_length;
-    }
-
-    public void setEmail_max_length(int email_max_length) {
-        this.email_max_length = email_max_length;
-    }
-
-    public int getMin_age() {
-        return min_age;
-    }
-
-    public void setMin_age(int min_age) {
-        this.min_age = min_age;
-    }
 }
 

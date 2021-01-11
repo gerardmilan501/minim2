@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6DE95"
+    android:background="@color/minim2"
     tools:context=".fragments.ProfileGeneralFragment">
 
     <TextView
-        android:id="@+id/tvProfileGeneralScore"
+        android:id="@+id/tvFollowers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="@string/score_string"
+        android:text="Followers"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@id/ivProfileGeneralPhoto"
@@ -44,32 +44,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvProfileGeneralLevel"
+        android:id="@+id/tvfollowing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/level_string"
+        android:text="Following"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/tvProfileGeneralScore"
-        app:layout_constraintTop_toBottomOf="@id/tvProfileGeneralScore" />
+        app:layout_constraintStart_toStartOf="@id/tvFollowers"
+        app:layout_constraintTop_toBottomOf="@id/tvFollowers" />
 
     <TextView
         android:id="@+id/tvProfileGeneralRankingPosition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/ranking_position_string"
+        android:text="repositoris"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/tvProfileGeneralScore"
-        app:layout_constraintTop_toBottomOf="@id/tvProfileGeneralLevel" />
+        app:layout_constraintStart_toStartOf="@id/tvFollowers"
+        app:layout_constraintTop_toBottomOf="@id/tvfollowing" />
 
     <TextView
-        android:id="@+id/tvProfileGeneralUsername"
+        android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/username_string"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
@@ -77,36 +77,24 @@
         app:layout_constraintStart_toStartOf="@id/ivProfileGeneralPhoto"
         app:layout_constraintTop_toBottomOf="@id/ivProfileGeneralPhoto" />
 
-    <TextView
-        android:id="@+id/tvProfileGeneralEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/email_string"
-        android:textColor="@android:color/background_dark"
-        app:layout_constraintStart_toStartOf="@id/tvProfileGeneralUsername"
-        app:layout_constraintTop_toBottomOf="@id/tvProfileGeneralUsername" />
-
-    <TextView
-        android:id="@+id/tvProfileGeneralBirthdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/birthdate_string"
-        android:textColor="@android:color/background_dark"
-        app:layout_constraintStart_toStartOf="@id/tvProfileGeneralEmail"
-        app:layout_constraintTop_toBottomOf="@id/tvProfileGeneralEmail" />
-
     <Button
         android:id="@+id/btnBackProfileGeneral"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="@color/secundarifosc"
         android:text="@string/back_string"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.92" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="121dp"
+        android:layout_height="221dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsername" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

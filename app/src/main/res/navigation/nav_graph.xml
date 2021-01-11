@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -11,73 +11,8 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_mainMenuFragment"
-            app:destination="@id/mainMenuFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_forgottenPasswordFragment"
-            app:destination="@id/forgottenPasswordFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_registerFragment_to_loginRegisterFragment"
-            app:destination="@id/loginRegisterFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_changePasswordFragment"
-            app:destination="@id/changePasswordFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_deleteAccountFragment"
-            app:destination="@id/deleteAccountFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_changeEmailFragment"
-            app:destination="@id/changeEmailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/shopFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.ShopFragment"
-        android:label="fragment_shop"
-        tools:layout="@layout/fragment_shop" />
-    <fragment
-        android:id="@+id/gameFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.GameFragment"
-        android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
-    <fragment
-        android:id="@+id/inventoryFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.InventoryFragment"
-        android:label="fragment_inventory"
-        tools:layout="@layout/fragment_inventory" />
-    <fragment
-        android:id="@+id/loginRegisterFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.LoginRegisterFragment"
-        android:label="fragment_login_register"
-        tools:layout="@layout/fragment_login_register" >
-        <action
-            android:id="@+id/action_loginRegisterFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_loginRegisterFragment_to_registerFragment"
-            app:destination="@id/registerFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_loginRegisterFragment_to_developersFragment"
-            app:destination="@id/developersFragment" />
+            android:id="@+id/action_loginFragment_to_profileGeneralFragment"
+            app:destination="@id/profileGeneralFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -85,53 +20,9 @@
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
-            android:id="@+id/action_splashScreenFragment_to_loginRegisterFragment"
-            app:destination="@id/loginRegisterFragment" />
-        <action
-            android:id="@+id/action_splashScreenFragment_to_mainMenuFragment"
-            app:destination="@id/mainMenuFragment" />
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/mainMenuFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.MainMenuFragment"
-        android:label="fragment_main_menu"
-        tools:layout="@layout/fragment_main_menu" >
-        <action
-            android:id="@+id/action_mainMenuFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
-        <action
-            android:id="@+id/action_mainMenuFragment_to_inventoryFragment"
-            app:destination="@id/inventoryFragment" />
-        <action
-            android:id="@+id/action_mainMenuFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_mainMenuFragment_to_shopFragment"
-            app:destination="@id/shopFragment" />
-        <action
-            android:id="@+id/action_mainMenuFragment_to_rankingFragment"
-            app:destination="@id/rankingFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/changePasswordFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.ChangePasswordFragment"
-        android:label="fragment_change_password"
-        tools:layout="@layout/fragment_change_password" />
-    <fragment
-        android:id="@+id/forgottenPasswordFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.ForgottenPasswordFragment"
-        android:label="fragment_forgotten_password"
-        tools:layout="@layout/fragment_forgotten_password" />
-    <fragment
-        android:id="@+id/deleteAccountFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.DeleteAccountFragment"
-        android:label="fragment_delete_account"
-        tools:layout="@layout/fragment_delete_account" />
-    <fragment
-        android:id="@+id/changeEmailFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.ChangeEmailFragment"
-        android:label="fragment_change_email"
-        tools:layout="@layout/fragment_change_email" />
     <fragment
         android:id="@+id/noInternetConnectionFragment"
         android:name="edu.upc.dsa.firefighteradventure.fragments.NoInternetConnectionFragment"
@@ -142,16 +33,6 @@
         android:name="edu.upc.dsa.firefighteradventure.fragments.ConnectionErrorFragment"
         android:label="fragment_connection_error"
         tools:layout="@layout/fragment_connection_error" />
-    <fragment
-        android:id="@+id/developersFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.DevelopersFragment"
-        android:label="fragment_developers"
-        tools:layout="@layout/fragment_developers" />
-    <fragment
-        android:id="@+id/rankingFragment"
-        android:name="edu.upc.dsa.firefighteradventure.fragments.RankingFragment"
-        android:label="fragment_ranking"
-        tools:layout="@layout/fragment_ranking" />
     <fragment
         android:id="@+id/profileGeneralFragment"
         android:name="edu.upc.dsa.firefighteradventure.fragments.ProfileGeneralFragment"

@@ -32,50 +32,50 @@ public class LoginRegisterFragment extends Fragment {
 
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+   // @Override
+    //public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        super.onViewCreated(view, savedInstanceState);
+      //  super.onViewCreated(view, savedInstanceState);
 
-        mainActivity = (MainActivity) getActivity();
-        mainActivity.setBackActivated(false);
+        //mainActivity = (MainActivity) getActivity();
+        //mainActivity.setBackActivated(false);
 
-        if (!mainActivity.isNetworkConnected()) {
+        //if (!mainActivity.isNetworkConnected()) {
 
-            Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
-            return;
+          //  Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
+            //return;
 
-        }
+        //}
 
-        view.findViewById(R.id.btnGotoLogin).setOnClickListener(this::btnGotoLoginClick);
-        view.findViewById(R.id.btnGotoRegister).setOnClickListener(this::btnGotoRegisterClick);
-        view.findViewById(R.id.btnGotoDevelopers).setOnClickListener(this::btnGotoDevelopersClick);
-        view.findViewById(R.id.btnGotoConfigurationLoginRegister).setOnClickListener(this::btnGotoConfigurationLoginRegisterClick);
-
-    }
-
-    public void btnGotoRegisterClick(android.view.View u){
-
-        Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_registerFragment);
+        //view.findViewById(R.id.btnGotoLogin).setOnClickListener(this::btnGotoLoginClick);
+        //view.findViewById(R.id.btnGotoRegister).setOnClickListener(this::btnGotoRegisterClick);
+        //view.findViewById(R.id.btnGotoDevelopers).setOnClickListener(this::btnGotoDevelopersClick);
+        //view.findViewById(R.id.btnGotoConfigurationLoginRegister).setOnClickListener(this::btnGotoConfigurationLoginRegisterClick);
 
     }
 
-    public void btnGotoLoginClick(android.view.View u){
+   // public void btnGotoRegisterClick(android.view.View u){
 
-        Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_loginFragment);
+     //   Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_registerFragment);
 
-    }
+    //}
 
-    public void btnGotoDevelopersClick(android.view.View u) {
+    //public void btnGotoLoginClick(android.view.View u){
 
-        Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_developersFragment);
+      //  Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_loginFragment);
 
-    }
+    //}
 
-    public void btnGotoConfigurationLoginRegisterClick(android.view.View u) {
+    //public void btnGotoDevelopersClick(android.view.View u) {
 
-        Navigation.findNavController(view).navigate(R.id.configurationFragment);
+      //  Navigation.findNavController(view).navigate(R.id.action_loginRegisterFragment_to_developersFragment);
 
-    }
+    //}
 
-}
+    //public void btnGotoConfigurationLoginRegisterClick(android.view.View u) {
+
+      //  Navigation.findNavController(view).navigate(R.id.configurationFragment);
+
+    //}
+
+//}

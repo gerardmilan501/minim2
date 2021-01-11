@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ConnectionErrorFragment"
-    android:background="#F6DE95">
+    android:background="@color/minim2">
 
     <ImageView
         android:id="@+id/ivConnectionError"
@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.32"
-        app:tint="@color/colorAccent" />
+        app:tint="@color/negre" />
 
     <TextView
         android:id="@+id/tvConnectionError"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:backgroundTint="@color/secundarifosc"
         android:text="@string/retry_string"
         android:textSize="18sp"
         android:textStyle="bold"

@@ -8,14 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
-import edu.upc.dsa.firefighteradventure.models.ProfileResponse;
-import edu.upc.dsa.firefighteradventure.models.RankingPositionResponse;
-import edu.upc.dsa.firefighteradventure.models.User;
+import edu.upc.dsa.firefighteradventure.models.UserCredentialsParameters;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +30,9 @@ public class ProfileGeneralFragment extends Fragment {
 
     private String username;
 
-    private TextView tvProfileGeneralUsername;
-    private TextView tvProfileGeneralBirthdate;
-    private TextView tvProfileGeneralEmail;
+    private TextView tvProfileUsername;
+    private TextView tvProfileFollowers;
+    private TextView tvProfileFollowing;
     private TextView tvProfileGeneralLevel;
     private TextView tvProfileGeneralScore;
 
@@ -77,15 +74,13 @@ public class ProfileGeneralFragment extends Fragment {
 
         }
 
-        tvProfileGeneralUsername = view.findViewById(R.id.tvProfileGeneralUsername);
-        tvProfileGeneralBirthdate = view.findViewById(R.id.tvProfileGeneralBirthdate);
-        tvProfileGeneralEmail = view.findViewById(R.id.tvProfileGeneralEmail);
-        tvProfileGeneralLevel = view.findViewById(R.id.tvProfileGeneralLevel);
-        tvProfileGeneralScore = view.findViewById(R.id.tvProfileGeneralScore);
+        tvProfileUsername = view.findViewById(R.id.tvUsername);
+
+        tvProfileFollowers = view.findViewById(R.id.tvFollowers);
 
         btnBackProfileGeneral = view.findViewById(R.id.btnBackProfileGeneral);
 
-        tvProfileGeneralRankingPosition = view.findViewById(R.id.tvProfileGeneralRankingPosition);
+        tvProfileFollowing = view.findViewById(R.id.tvfollowing);
 
         btnBackProfileGeneral.setOnClickListener(this::btnBackProfileGeneralClick);
 
@@ -102,52 +97,53 @@ public class ProfileGeneralFragment extends Fragment {
 
         mainActivity.setLoadingData(true);
 
-        Call<ProfileResponse> user = mainActivity.getUserService().getUserByUsername(username);
+        Call<UserCredentialsParameters> resp = mainActivity.getUserService().getUsuari(getArguments().getString("user"));
 
-        user.enqueue(new Callback<ProfileResponse>() {
+        resp.enqueue(new Callback<UserCredentialsParameters>(){
 
             @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+            public void onResponse(Call<UserCredentialsParameters> call, Response<UserCredentialsParameters> response) {
 
                 mainActivity.setLoadingData(false);
 
-                switch (response.code()) {
+                if (response.code() == 200) {
 
-                    case 200:
-                        ProfileResponse result = response.body();
+                   UserCredentialsParameters resp = response.body();
+                    tvProfileFollowers.setText(String.valueOf(resp.getFollowers()));
+                    tvProfileFollowing.setText(String.valueOf(resp.getFollowing()));
+                    tvProfileUsername.setText(resp.getLogin());
 
-                        tvProfileGeneralUsername.setText(result.getUsername());
-                        tvProfileGeneralBirthdate.setText(getString(R.string.birthdate_string) + ": " + result.getBirthdate());
-                        tvProfileGeneralEmail.setText(result.getEmail());
-                        tvProfileGeneralLevel.setText(getString(R.string.level_string) + ": " + result.getLevel());
-                        tvProfileGeneralScore.setText(getString(R.string.score_string) + ": " + result.getScore());
-                        tvProfileGeneralRankingPosition.setText(getString(R.string.ranking_position_string) + ": " + result.getRanking_position());
 
-                        break;
 
-                    case 404:
-                        Toast.makeText(getContext(), R.string.user_not_exists_string, Toast.LENGTH_SHORT).show();
-                        break;
+                }
 
-                    case 601:
-                        Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
-                        break;
+                else {
 
-                    default:
-                        Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
-                        break;
+                    switch (response.code()) {
+
+                        case 404:
+                            Toast.makeText(getContext(), R.string.user_not_exists_string, Toast.LENGTH_SHORT).show();
+                            break;
+
+                        default:
+                            Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
+                            break;
+
+                    }
 
                 }
 
             }
 
             @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+            public void onFailure(Call<UserCredentialsParameters> call, Throwable t) {
 
                 mainActivity.setLoadingData(false);
                 Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
 
             }
+
+
 
         });
     }

@@ -20,6 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class SplashScreenFragment extends Fragment {
 
     private View view;
@@ -48,119 +51,40 @@ public class SplashScreenFragment extends Fragment {
         mainActivity = (MainActivity) getActivity();
         mainActivity.setBackActivated(false);
 
-        if (!mainActivity.isNetworkConnected()) {
 
-            Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
-            return;
 
-        }
-
-        Call<UserCredentialsParameters> gameParameters = mainActivity.getUserService().getGameParameters();
-
-        gameParameters.enqueue(new Callback<UserCredentialsParameters>() {
+        TimerTask mTimerTask = new TimerTask() {
 
             @Override
-            public void onResponse(Call<UserCredentialsParameters> call, Response<UserCredentialsParameters> response) {
+            public void run() {
 
-                if (response.code() == 201) {
+                if (!mainActivity.isNetworkConnected()) {
 
-                    UserCredentialsParameters result = response.body();
+                    Navigation.findNavController(view).navigate(R.id.noInternetConnectionFragment);
 
-                    mainActivity.setUsername_min_length(result.getUsername_min_length());
-                    mainActivity.setUsername_max_length(result.getUsername_max_length());
+                }
 
-                    mainActivity.setEmail_max_length(result.getEmail_max_length());
-                    mainActivity.setEmail_min_length(result.getEmail_min_length());
+                else {
 
-                    mainActivity.setPassword_max_length(result.getPassword_max_length());
-                    mainActivity.setPassword_min_length(result.getPassword_min_length());
-
-                    mainActivity.setMin_age(result.getMin_age());
-
-                    tryLogin();
-
-                } else {
-
-                    Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
+                    Navigation.findNavController(view).navigate(R.id.loginFragment);
 
                 }
 
             }
+        };
 
-            @Override
-            public void onFailure(Call<UserCredentialsParameters> call, Throwable t) {
+        Timer mTimer = new Timer();
+        mTimer.schedule(mTimerTask, 3000);
 
-                Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
-
-            }
-
-        });
 
     }
 
-    public void tryLogin() {
 
-        String username = mainActivity.getSavedUsername();
-        String password = mainActivity.getSavedPassword();
 
-        if (username.equals("")) {
 
-            Navigation.findNavController(view).navigate(R.id.action_splashScreenFragment_to_loginRegisterFragment);
 
-        } else {
 
-            Call<ResponseBody> resp = mainActivity.getUserService().login(new LoginCredentials(username, password));
 
-            resp.enqueue(new Callback<ResponseBody>() {
 
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                    if (response.code() == 201) {
-
-                        Navigation.findNavController(view).navigate(R.id.action_splashScreenFragment_to_mainMenuFragment);
-
-                    } else {
-
-                        switch (response.code()) {
-
-                            case 250:
-                                Toast.makeText(getContext(), R.string.user_not_exists_string, Toast.LENGTH_SHORT).show();
-                                break;
-                            case 601:
-                                Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
-                                break;
-                            case 602:
-                                Toast.makeText(getContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
-                                break;
-                            case 603:
-                                Toast.makeText(getContext(), R.string.incorrect_password_string, Toast.LENGTH_SHORT).show();
-                                break;
-                            default:
-                                Toast.makeText(getContext(), R.string.error_login_string, Toast.LENGTH_SHORT).show();
-                                break;
-
-                        }
-
-                        mainActivity.setSavedUsername("");
-                        mainActivity.setSavedPassword("");
-
-                        Navigation.findNavController(view).navigate(R.id.action_splashScreenFragment_to_loginRegisterFragment);
-
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                    Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
-
-                }
-
-            });
-
-        }
-    }
 
 }

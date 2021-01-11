@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Firefighter Adventure</string>
-    <string name="login_string">Login</string>
+    <string name="app_name">Minim 2</string>
+    <string name="login_string">Search</string>
     <string name="welcome_back_string">Welcome back! 😎</string>
     <string name="users_string">Users</string>
     <string name="show_users_string">Show users</string>
@@ -39,9 +39,9 @@
     <string name="confirm_logout_string">Are you sure you want to log out?</string>
     <string name="logout_string">Logout</string>
     <string name="no_internet_connection_string">Your device is not connected to the Internet!</string>
-    <string name="you_need_internet_connection_string">You need an active Internet connection to play Firefighter Adventure</string>
+    <string name="you_need_internet_connection_string">You need an active Internet connection to use this application</string>
     <string name="retry_string">Retry</string>
-    <string name="connection_error_string">There has been an error while trying to connect to Firefighter Adventure server</string>
+    <string name="connection_error_string">There has been an error while trying to connect to server</string>
     <string name="confirm_new_email_string">Confirm new email</string>
     <string name="new_email_string">New email</string>
     <string name="who_we_are_string">Who we are</string>

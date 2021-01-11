@@ -9,10 +9,15 @@ import androidx.navigation.Navigation;
 import edu.upc.dsa.firefighteradventure.MainActivity;
 import edu.upc.dsa.firefighteradventure.R;
 import edu.upc.dsa.firefighteradventure.models.Credentials.LoginCredentials;
+import edu.upc.dsa.firefighteradventure.models.UserCredentialsParameters;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -29,7 +34,6 @@ public class LoginFragment extends Fragment {
 
     private View view;
     private EditText etUsernameLogin;
-    private EditText etPasswordLogin;
 
     private Button btnBackLogin;
 
@@ -49,6 +53,7 @@ public class LoginFragment extends Fragment {
 
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
@@ -65,23 +70,14 @@ public class LoginFragment extends Fragment {
         }
 
         etUsernameLogin = view.findViewById(R.id.etUsernameLogin);
-        etPasswordLogin = view.findViewById(R.id.etPasswordLogin);
 
-        etUsernameLogin.setFilters(new InputFilter[] { mainActivity.spaceFilter });
-        etPasswordLogin.setFilters(new InputFilter[] { mainActivity.spaceFilter });
-
+        etUsernameLogin.setFilters(new InputFilter[]{mainActivity.spaceFilter});
 
         view.findViewById(R.id.btnLogin).setOnClickListener(this::btnLoginClick);
-        view.findViewById(R.id.btnGotoForgottenPassword).setOnClickListener(this::btnGotoForgottenPasswordClick);
-        view.findViewById(R.id.btnBackLogin).setOnClickListener(this::btnBackLoginClick);
+
 
     }
 
-    public void btnGotoForgottenPasswordClick(android.view.View u) {
-
-        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_forgottenPasswordFragment);
-
-    }
 
     public void btnLoginClick(android.view.View u) {
 
@@ -89,76 +85,18 @@ public class LoginFragment extends Fragment {
 
             Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
             return;
-
-        } else if (etPasswordLogin.getText().toString().equals("")) {
-
-            Toast.makeText(getContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
-            return;
-
         }
 
-        mainActivity.setLoadingData(true);
+        Bundle bundle = new Bundle();
+        bundle.putString("user", etUsernameLogin.getText().toString());
 
-        Call<ResponseBody> resp = mainActivity.getUserService().login(new LoginCredentials(etUsernameLogin.getText().toString(), etPasswordLogin.getText().toString()));
 
-        resp.enqueue(new Callback<ResponseBody>() {
+        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_profileGeneralFragment, bundle);
 
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                mainActivity.setLoadingData(false);
-
-                if (response.code() == 201) {
-
-                    Snackbar.make(view, R.string.login_succesful_string, Snackbar.LENGTH_SHORT)
-                            .show();
-
-                    mainActivity.setSavedUsername(etUsernameLogin.getText().toString());
-                    mainActivity.setSavedPassword(etPasswordLogin.getText().toString());
-
-                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_mainMenuFragment);
-
-                } else {
-
-                    switch (response.code()) {
-
-                        case 250:
-                            Toast.makeText(getContext(), R.string.user_not_exists_string, Toast.LENGTH_SHORT).show();
-                            break;
-                        case 601:
-                            Toast.makeText(getContext(), R.string.write_username_string, Toast.LENGTH_SHORT).show();
-                            break;
-                        case 602:
-                            Toast.makeText(getContext(), R.string.write_password_string, Toast.LENGTH_SHORT).show();
-                            break;
-                        case 603:
-                            Toast.makeText(getContext(), R.string.incorrect_password_string, Toast.LENGTH_SHORT).show();
-                            break;
-                        default:
-                            Toast.makeText(getContext(), R.string.error_login_string, Toast.LENGTH_SHORT).show();
-                            break;
-
-                    }
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                mainActivity.setLoadingData(false);
-                Navigation.findNavController(view).navigate(R.id.connectionErrorFragment);
-
-            }
-
-        });
-
-    }
-
-    public void btnBackLoginClick(android.view.View u) {
-
-        mainActivity.goBack();
 
     }
 }
+
+
+
